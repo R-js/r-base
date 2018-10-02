@@ -1,0 +1,25 @@
+{
+  "name": "r-base",
+  "version": "1.0.0",
+  "description": "Functions from the R-package \"base\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbogers/r-base.git"
+  },
+  "keywords": [
+    "R",
+    "base",
+    "statistics",
+    "base.package"
+  ],
+  "author": "Jacob Bogers",
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/jacobbogers/r-base/issues"
+  },
+  "homepage": "https://github.com/jacobbogers/r-base#readme"
+}
