@@ -1,5 +1,8 @@
 # BASE
 
+### search the inet because unclear/missing docs etc
+base::lazyLoadDBfetch
+
 ## operators
 |` list of operators`|
 |--------|
@@ -28,14 +31,18 @@
 |`base::<=`|
 |`base::==`|
 |`base::>=`|
-|`base::if`|
-
+|`base::if`
+|`base::||`|
+|`base::!=`|
+|`base::[<-.`|
+|`base::[[.`|
+|`base::[[<-`|
 
 ### S3 routing of as.matrix to data.frame class
-base::as.matrix.data.frame
+
 
 ### TRUE
-base::F 
+base::F
 
 ### Inhibit conversion
 base::I
@@ -49,17 +56,48 @@ base::T
 ### collection
 base::c
 
-### quit
-base::q
 
-### transpose
-base::t
-
-### Not Applicable, return the value of a named object
-base::dynGet
-
-### Not Applicable
-base::as.single  
+### language
+base::as.logical
+base::browser
+base::is.double
+base::new.env
+base::while
+base::complex
+base::environmentIsLocked
+base::Ops.factor
+base::as.complex
+base::all.equal.environment
+base::as.double
+base::findPackageEnv _find objects in package base_
+base::getNamespaceImports
+base::match.arg
+base::all.names _get tokens(expr) from an expression_
+base::enquote _quote expressions_
+base::|.octmode _octal mode?_
+base::warning _warning message_
+base::match.fun _extract function by name_
+base::format.AsIs _note:"AsIs" is a class , format an R object , pretty print_
+base::is.integer
+base::as.integer
+base::as.single _double single precision vectors_
+base::is.function
+base::l10n_info _report localisation information_
+base::integer
+base::pcre_config _find conversion of strings to/from encoding_
+base::parent.frame
+base::Position
+base::isNamespace
+base::lockBinding _locking functions to environments_
+base::message _simple diagnostic messages_
+base::all.equal.language
+base::attr<-
+base::asNamespace
+base::eval
+base::do.call
+base::getNamespaceName
+base::all.equal
+base::round
 
 ### looks like multiplex
 base::interaction
@@ -74,8 +112,10 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 
 ### special function gamma
 base::gamma
+base::digamma
 
 ### version string management
+base::regmatches<-
 returns class `["package_version", "numeric_version"]`
 base::as.package_version  
 base::unique.numeric_version
@@ -92,7 +132,6 @@ base::is.na<-.numeric_version
 base::[.numeric_version
 base::as.list.numeric_version
 base::Ops.numeric_version
-base::.encode_numeric
 base::R_system_version
 base::as.character.numeric_version
 base::$.package_version
@@ -109,28 +148,11 @@ base::is.package_version
 base::is.numeric_version
 base::rep.numeric_version
 
-### not applicable
-base::.GlobalEnv
-
-### Not applicable (symbols are mappings to functions (and other things) stored in dll)
-base::getNativeSymbolInfo
-
-### to work with R source file, not applicable
-base::print.srcfile
-
 ### missing value indicator (different then NULL)
 base::is.na<- "not avaiable" 
 
 ### namespace support, not to be called directly in R
 base::packageHasNamespace
-
-base::!=
-
-### The condition system
-base::.handleSimpleError
-
-### xtfrm is a form of ranking , assign ordinal values to elements
-base::xtfrm.AsIs
 
 ### fetch columnnames from matrices, dataframes, not vectors, not lists
 looks weird, check out what do.NULL and `prefix` do here
@@ -142,8 +164,6 @@ base::file.choose
 ### function to work with streams, files, sockets, urls, whatever
 base::summary.connection
 
-### make a call to compiled code
-base::.C
 
 ### subsetting, like [ but different 
 base::subset.default
@@ -155,9 +175,6 @@ base::subset.data.frame
 ### utf8ToInt
 _convert utf8 to utf32_
 base::utf8ToInt
-
-#### base::baseenv _meaningless in javascript_
-#### base::.set_row_names _prolly an internal
 
 ### POSIXt date time is represented by named components like `year`, `month`,`day`, `hour`, etc
 Note that POSIXlt and POSIXct are wrappers around a common class POSIXt  
@@ -232,6 +249,7 @@ base::[<-.POSIXlt
 base::as.POSIXct.Date
 base::split.POSIXct
 
+
 #### * base::quote no real counterpart in JS, its an expression, but not evaluated
 Example:
 ```R
@@ -290,6 +308,8 @@ base::Re
 * base::qr.qty
 * base::qr.resid
 * base::qr.solve _same as solve(qr)_
+* base::qr
+* qr
 
 ```R
 > A <- matrix(runif(12), 3)
@@ -314,13 +334,35 @@ base::mapply
 base::tapply
 base::eapply
 
+## io
+base::closeAllConnections
+base::file.exists
+base::socketSelect
+base::dget
+base::getAllConnections
+base::pipe
+base::print.hexmode _print numbers in hex_
+base::file.path
+base::memDecompress _compress or decompress in memory_
+base::lazyLoad _lazyload R objects_
+base::file.symlink
+base::dput _write object to file_
+base::tempfile _create named temporary file_
+base::mode<- _storage mode of an R object_
+base::rawConnection
+base::Sys.umask
+base::gzcon
+base::ls _show directory entries_
+base::readBin _read binary data_
+base::dump _text representation of R objects_
+base::unlink _deletes files_
+base::file.copy _copy a file_
+base::browserText _browser related, not a "browser" here is a user-feedback-console, like a prompt_
 
 ### not need in JS
-
 base::require
 base::library.dynam
 base::unique.warnings
-base::ls show directory entries
 base::rm remove identifier from environment
 
 ### internal
@@ -345,26 +387,102 @@ base::.S3PrimitiveGenerics
 base::.AutoloadEnv
 base::.Devices
 base::.userHooksEnv
-base::.gt
 base::.Library
 base::.ArgsEnv
 base::.popath
 base::.format.zeros _auxiliary function of 'prettyNum()'  re-formats the zeros in a vector 'x' of formatted numbers_
 base::.C_R_getTaskCallbackNames
 base::.detach
-base::.kappa_tri
 base::.getRequiredPackages
 base::.doWrap
 base::.col
 base::.F_dchdc
 base::.isMethodsDispatchOn
-
+base::.mergeExportMethods
+base::.primTrace
+base::.Machine
+base::.rowMeans
+base::.Call
+base::.expand_R_libs_env_var
+base::.mergeImportMethods
+base::.knownS3Generics
+base::.deparseOpts
+base::.row
+base::.standard_regexps
+base::.__H__.rbind
+base::.signalSimpleWarning
+base::.External2
+base::.Date
+base::.rowSums
+base::.methodsNamespace
+base::.NotYetUsed
+base::.First.sys
+base::.First.sys
+base::.F_dqrqy
+base::.F_dqrxb
+base::.F_dqrcf
+base::.Last.value
+base::.find.package
+base::.getNamespace
+base::.F_dqrqty
+base::.getNamespace
+base::.getNamespace
+base::.isOpen
+base::.F_dqrrsd
+base::.Traceback
+base::.Library.site
+base::.packageStartupMessage
+base::.Call.graphics
+base::.C_R_addTaskCallback
+base::.amatch_bounds
+base::.S3_methods_table
+base::.row_names_info
+base::.F_dqrdc2
+base::.leap.seconds
+base::.C_R_removeTaskCallback
+base::.libPaths
+base::.getNamespaceInfo
+base::.primUntrace
+base::.colMeans
+base::.dynLibs
+base::...length
+base::.__H__.cbind
+base::.External
+base::.BaseNamespaceEnv
+base::.Internal
+base::.Fortran
+base::.TAOCP1997init
+base::..deparseOpts
+base::.path.package
+base::.GenericArgsEnv
+base::.F_dtrco
+base::.kronecker
+base::.traceback
+base::.bincode
+base::.Deprecated
+base::.doSortWrap
+base::.rmpkg
+base::.Platform
+base::.__S3MethodsTable__.
+base::...elt
+base::.Script
+base::.doTrace
+base::.Device
+base::.tryResumeInterrupt
+base::.valid.factor
+base::.Defunct
+base::.set_row_names _prolly an internal
+base::.C
+base::.encode_numeric
+base::.handleSimpleError
+base::.GlobalEnv
+base::.gt
+base::.gtn
 
 ### evaluate R expression
 base::evalq
 
 ### difftime
-
 base::units.difftime
 base::xtfrm.difftime
 base::as.double.difftime
@@ -379,7 +497,6 @@ base::[.difftime
 base::as.difftime
 base::mean.difftime
 base::print.difftime
-
 base::difftime
 base::Ops.difftime
 base::as.data.frame.difftime
@@ -391,8 +508,9 @@ base::Summary.difftime
 base::is.name alias for is.symbol
 base::as.name alias for as.symbol
 
-
 ### data frames
+base::duplicated.default
+base::print.by
 base::as.data.frame.matrix __coerce matrix to a data.frame_
 base::dimnames.data.frame
 base::xpdrows.data.frame
@@ -438,7 +556,6 @@ base::t.data.frame
 base::as.data.frame.integer
 base::[[.data.frame
 base::as.data.frame.Date
-
 base::split<-.data.frame
 base::droplevels.data.frame
 base::as.data.frame.list
@@ -457,6 +574,7 @@ base::parse _'parse' returns the parsed but unevaluated expressions in a list._
 base::by _Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
 base::gc _garbage collection_
 base::gl _Generate factors by specifying the pattern of their levels._
+base::match _same as %in%_
 
 ### sorting
 base::order _sort data_
@@ -466,120 +584,170 @@ base::sort.int
 base::sort.default
 base::is.unsorted
 
+### list
+base::is.list
+base::unlist
+base::is.recursive _is an object list like or atomic_
+base::as.function _convert object(list) to a function_
+base::replicate _replicate is a wrapper for the common use of sapply_
+
 ### array
+base::names<-
+base::prop.table
+base::replace
+base::slice.index
+base::diag
+base::sequence _run `seq\_len` over a vector of values_
+base::provideDimnames
+base::t.default _matrix transpose_
+base::NROW _number of rows in an array_
+base::summary.matrix
+base::La.svd _svd decomposition (la=lapack)_
+base::prod _product of vectors_
+base::drop _delete dimensions that have only 1 level_
+base::eigen _spectral decomposition of matrix_
+base::colMeans
+base::t
 base::unique.array
 base::as.data.frame.array
 base::arrayInd
+base::which
 base::duplicated.
 base::anyDuplicated.array
-base::
+base::names
+base::which
+```R
+which(LETTERS == "R")
+which(ll <- c(TRUE, FALSE, TRUE, NA, FALSE, FALSE, TRUE)) #> 1 3 7
+names(ll) <- letters[seq(ll)]
+which(ll)
+which((1:12)%%2 == 0) # which are even?
+which(1:10 > 3, arr.ind = TRUE)
+```
 base::simplify2
 base::as.array
 base::is.array
 base::as.array.default
-
-
-     which(LETTERS == "R")
-     which(ll <- c(TRUE, FALSE, TRUE, NA, FALSE, FALSE, TRUE)) #> 1 3 7
-     names(ll) <- letters[seq(ll)]
-     which(ll)
-     which((1:12)%%2 == 0) # which are even?
-     which(1:10 > 3, arr.ind = TRUE)
-
-
-
-
-
-
-
-
-
-
-
-
-base::pi
-base::gzcon
-base::qr
-
-
-base::paste
-base::match
-
-
-base::rank
-base::||
-base::seq.default
-base::startsWith
-base::[<-.Date
-
+base::aperm _array transposition_
 base::aperm.default
-base::kronecker
-base::traceback
-base::as.character.hexmode
-base::simpleError
-base::warnings
+base::kronecker _kronecker product on arrays_
+base::as.matrix.data.frame
 
-base::kappa.qr
-base::isNamespace
-base::attr<-
-base::colMeans
+### math
+base::ceiling
+base::pi
+base::pmin _vector based min_
+base::pmin.int
+base::pmax
+base::cumprod _cummulative sum, products and extremes_
+base::mean.default
+base::setdiff
+base::is.element
+base::polyroot
 
-base::asNamespace
 
-base::quit
-base::kappa.lm
-base::setSessionTimeLimit
-base::find.package
-
-base::eval
-
+### dates
+base::months
+base::month.name _built in constants_
 base::split.Date
-base::readChar
-base::autoloader
+base::Summary.Date
+base::rep.Date
+base::diff.Date
+base::is.numeric.Date
+base::as.list.Date
+base::length<-.Date
+base::c.Date
+base::ISOdate
+base::-.Date
+base::weekdays.Date
+base::cut.Date
+base::seq.Date
+base::round.Date
+base::mean.Date
+base::as.Date.default
+base::months.Date
+base::as.Date.numeric
+base::Sys.Date
+base::print.Date
+base::julian.Date
+base::Math.Date
+base::Ops.Date
+base::as.Date.character
+base::[.Date
+base::format.Date
+base::summary.
+base::as.Date.factor
+base::+.Date
+base::xtfrm.Date
+base::as.character.Date
+base::quarters.Date
+base::date
+base::ISOdatetime
+base::as.Date
+base::trunc.Date
 
-base::untracemem
+### string
+base::toupper
+base::paste
+base::startsWith
+base::as.character.hexmode
+base::letters
 base::Encoding
-base::debuggingState
+base::regmatches
+base::substring
+base::nzchar
+base::as.raw
+base::toString
 
-base::do.call
 
-base::regmatches<-
+## statistical helpers
+base::rank _ranking of numbers_
+_example_: 
+```R
+> x=c(1,1.5,1.5,2,2.8)
+> rank(x)
+#-> [1] 1.0 2.5 2.5 4.0 5.0
+```
 
+base::xtfrm.AsIs _xtfrm is a form of ranking , assign ordinal values to elements_
+
+### condition number of a matrix
+base::kappa.qr
+base::kappa.lm
+base::kappa.default
+base::kappa
+base::.kappa_tri
+
+### conditioning
+base::as.character.condition
+
+
+### logicals
+base::as.logical.factor
+
+### factors 
+### levels
 base::levels.default
-base::computeRestarts
-base::readBin
-base::[[<-
+base::factor
+base::nlevels
+base::Summary.ordered
 
-base::sys.call
 
-base::path.expand
 base::fifo
 base::substitute
 base::data.matrix
 base::all.equal.formula
-base::as.logical.factor
-base::file
-base::srcfilealias
-base::determinant
 
+base::determinant
 base::print.noquote
 base::by.default
 base::Ops.ordered
 base::getNamespace
-
 base::conditionMessage.condition
-
-
-
 base::as.character.octmode
-
 base::browserSetDebug
 base::parent.env
 base::print.listof
-base::close.srcfile
-
-
-
 base::interactive
 base::unname
 base::remove
@@ -587,20 +755,15 @@ base::sample
 base::getNamespaceVersion
 base::removeTaskCallback
 base::scale
-
 base::textConnectionValue
 base::transform
 base::lchoose
-
 base::is.call
-
 base::row.names
 base::[.octmode
 base::print.factor
-
 base::switch
 base::getElement
-
 base::lengths
 base::dimnames<-
 base::save
@@ -613,21 +776,15 @@ base::scan
 base::is.null
 base::sink.number
 base::pretty
-base::Summary.Date
 base::library.dynam.unload
-base::letters
-
 base::browserCondition
 base::dir.exists
 base::print.srcref
-
 base::casefold
 base::anyNA
 base::suppressWarnings
 base::seek
-
 base::is.language
-
 base::get0
 base::as.vector
 base::strftime
@@ -635,23 +792,17 @@ base::readRDS
 base::split<-.default
 base::is.pairlist
 base::chartr
-base::rep.Date
 base::isFALSE
 base::as.pairlist
 base::as.octmode
-
 base::length
 base::formals
 base::rawConnectionValue
-
 base::Sys.chmod
 base::formatC
 base::sign
 base::sinh
 base::sink
-
-
-base::is.numeric.Date
 base::all.equal.character
 base::unsplit
 base::as.hexmode
@@ -660,40 +811,27 @@ base::list.files
 base::loadingNamespaceInfo
 base::packageEvent
 base::make.unique
-
 base::logical
 base::as.vector.factor
 base::noquote
 base::as.qr
 base::class<-
-base::[[.Date
 base::suppressPackageStartupMessages
 base::as.null.default
-
-
 base::summary.warnings
 base::file.show
-
 base::bindingIsLocked
-
-
 base::acosh
 base::bzfile
 base::intersect
-
 base::summary.srcref
 base::units<-
 base::withAutoprint
 base::as.table.default
-base::kappa.default
-base::as.list.Date
-
 base::getDLLRegisteredRoutines.character
-
 base::gctorture2
 base::Conj
 base::normalizePath
-
 base::addNA
 base::is.matrix
 base::[<-.factor
@@ -701,7 +839,6 @@ base::writeLines
 base::colSums
 base::saveRDS
 base::suppressMessages
-
 base::[[<-.factor
 base::$.DLLInfo
 base::%*%
@@ -714,40 +851,30 @@ base::curlGetHeaders
 base::sqrt
 base::sample.int
 base::grep
-
 base::is.logical
 base::print.proc_time
 base::Sys.readlink
 base::strsplit
-
 base::Cstack_info
 base::dir.create
-base::nlevels
+
 base::aperm
 base::xtfrm
-
 base::gsub
-
-
 base::stop
-
 base::unloadNamespace
 base::grouping
 base::seek.connection
 base::as.matrix.default
 base::%o%
-
 base::eval.parent
 base::%x%
-
 base::pushBack
 base::transform.default
 base::srcfilecopy
-
 base::restartFormals
 base::print.rle
 base::format.octmode
-base::diff.Date
 base::conditionCall.condition
 base::as.matrix
 base::enc2utf8
@@ -757,41 +884,26 @@ base::UseMethod
 base::write.dcf
 base::split
 base::match.call
-
 base::sys.calls
-
-base::length<-.Date
-
 base::char.expand
 base::signif
 base::file.link
-
 base::diff.default
 base::dyn.load
-
-
 base::expm1
 base::is.vector
-
 base::iconvlist
 base::chkDots
-
-
 base::library
-
 base::path.package
-
 base::proc.time
 base::table
 base::enc2native
-
 base::debug
 base::OlsonNames
-
 base::isOpen
 base::grepRaw
 base::rowsum
-
 base::as.list
 base::topenv
 base::system.file
@@ -807,21 +919,15 @@ base::choose
 base::as.expression.default
 base::bitwAnd
 base::tabulate
-
-
 base::c.noquote
 base::check_tzones
 base::file.size
-
 base::makeActiveBinding
 base:::::
-
-base::c.Date
 base::findInterval
 base::all.equal.raw
 base::parseNamespaceFile
 base::icuSetCollate
-
 base::Sys.localeconv
 base::conditionCall
 base::!.hexmode
@@ -829,32 +935,22 @@ base::margin.table
 base::<<-
 base::sprintf
 base::duplicated.matrix
-
-
 base::read.dcf
-base::names
 base::append
- 
-base::mat.or.vec
 
+base::mat.or.vec
 base::is.na<-.default
 base::split<-
 base::R.version.string
 base::tanpi
 base::namespaceExport
-
 base::prmatrix
 base::as.single.default
 base::expand.grid
-
 base::dimnames
 base::@<-
-
-base::kappa
 base::identical
 base::chol.default
-
-
 base::gctorture
 base::missing
 base::abbreviate
@@ -865,64 +961,40 @@ base::is.R
 base::Sys.sleep
 base::reg.finalizer
 base::isdebugged
-
 base::anyDuplicated.default
-
 base::rep.factor
 base::zapsmall
 base::outer
 base::print.function
-
-
-base::ISOdate
-
 base::isS4
 base::isBaseNamespace
-
 base::Arg
 base::file.mtime
 base::setwd
-
-
 base::bitwNot
-
 base::getwd
 base::list2env
 base::set.seed
-
 base::is.primitive
 base::grepl
-
-
 base::trigamma
 base::&.hexmode
 base::character
-
-
 base::returnValue
-
-
 base::version
-
 base::jitter
 base::isNamespaceLoaded
 base::print.warnings
 base::simpleWarning
 base::double
-
 base::as.expression
 base::summary.srcfile
-
 base::debugonce
 base::print
-
 base::[.listof
 base::forceAndCall
 base::close.srcfilealias
-base::.gtn
 base::testPlatformEquivalence
-base::.mergeExportMethods
-base::.primTrace
 base::seq.int
 base::storage.mode<-
 base::gregexpr
@@ -933,29 +1005,19 @@ base::ngettext
 base::print.Dlist
 base::Find
 base::all.equal.envRefClass
-
 base::gettext
 base::[.factor
 base::body<-
 base::rawToChar
-
-
-
-
 base::importIntoEnv
-
 base::isIncomplete
-
 base::bitwXor
-
 base::format.factor
 base::Map
 base::getTaskCallbackNames
-
 base::Mod
 base::sQuote
 base::regexec
-base::-.Date
 base::regexpr
 base::[.noquote
 base::sys.nframe
@@ -965,76 +1027,52 @@ base::source
 base::objects
 base::is.table
 base::sys.status
-
 base::search
 base::is.infinite
-base::.Machine
-
-base::weekdays.Date
 base::rownames
 base::readRenviron
 base::textConnection
-base::.rowMeans
 base::getSrcLines
-base::.Call
 base::unclass
-base::.expand_R_libs_env_var
 base::gc.time
 base::cummax
 base::gcinfo
 base::cummin
-base::.mergeImportMethods
-
 base::addTaskCallback
 base::file.mode
-base::.knownS3Generics
 base::unlockBinding
-
-base::.deparseOpts
 base::file.info
-base::.row
-
 base::xtfrm.Surv
 base::attachNamespace
 base::dQuote
 base::bquote
 base::builtins
-base::.standard_regexps
 base::length<-
 base::format.summaryDefault
 base::xzfile
-base::cut.Date
 base::nchar
-
 base::writeChar
 base::La_library
 base::strptime
 base::all.equal.numeric
 base::readline
-
-base::.__H__.rbind
 base::registerS3method
 base::as.list.default
 base::setNamespaceInfo
-base::seq.Date
 base::getNamespaceInfo
 base::asinh
 base::sys.on.exit
 base::namespaceImportMethods
-
 base::cumsum
 base::environmentName
 base::as.list.environment
 base::restartDescription
 base::[<-
-base::.signalSimpleWarning
 base::autoload
 base::format.pval
-
 base::environment<-
 base::as.call
 base::with
-base::round.Date
 base::emptyenv
 base::[.AsIs
 base::as.list.function
@@ -1042,7 +1080,6 @@ base::agrepl
 base::comment<-
 base::seq_len
 base::rowsum.default
-
 base::besselI
 base::besselJ
 base::besselK
@@ -1052,47 +1089,35 @@ base::withCallingHandlers
 base::open.srcfilecopy
 base::weekdays
 base::formatDL
-
 base::system2
 base::mostattributes<-
-base::.External2
 base::as.factor
 base::data.class
 base::is.symbol
-
 base::substring<-
 base::memCompress
 base::simpleMessage
-
-
 base::make.names
 base::as.null
 base::storage.mode
 base::substr<-
 base::getExportedValue
-base::mean.Date
 base::atan2
 base::requireNamespace
 base::atanh
 base::is.nan
 base::class
-
 base::length<-.factor
 base::agrep
 base::which.min
-base::as.Date.default
 base::Sys.glob
 base::Sys.getpid
 base::which.max
 base::pretty.default
 base::on.exit
 base::tcrossprod
-base::.Date
 base::crossprod
-
 base::abs
-base::months.Date
-
 base::stdin
 base::all
 base::as.numeric
@@ -1101,38 +1126,28 @@ base::Encoding<-
 base::isTRUE
 base::charToRaw
 base::Sys.time
-base::as.Date.numeric
 base::environment
 base::cat
 base::is.raw
-
 base::readLines
-base::.rowSums
 base::charmatch
 base::col
 base::cos
-base::Sys.Date
 base::det
 base::cut
 base::dim
 base::dir
-
-base::.methodsNamespace
 base::as.symbol
 base::[[.factor
-
 base::summary.factor
 base::anyDuplicated.matrix
 base::getDLLRegisteredRoutines.DLLInfo
 base::exp
-base::print.Date
-
 base::for
 base::rowSums
 base::rawShift
 base::get
 base::open.srcfilealias
-
 base::identity
 base::Summary.factor
 base::print.summaryDefault
@@ -1147,16 +1162,13 @@ base::print.condition
 base::RNGkind
 base::summary.table
 base::list
-
 base::as.character.error
 base::strtrim
 base::licence
 base::summary
-
 base::packageStartupMessage
 base::print.summary.warnings
 base::pmax.int
-base::julian.Date
 base::rownames<-
 base::license
 base::sys.save.image
@@ -1168,31 +1180,22 @@ base::searchpaths
 base::namespaceImportFrom
 base::sys.frames
 base::Recall
-
 base::log
 base::rawToBits
 base::max
 base::floor
-
 base::close
-base::Math.Date
-
-
 base::min
-
 base::assign
 base::taskCallbackManager
 base::gettextf
-base::.NotYetUsed
 base::setHook
 base::load
 base::Negate
 base::unique.matrix
 base::log2
-
 base::untrace
 base::logb
-
 base::droplevels.factor
 base::R.version
 base::R.Version
@@ -1203,16 +1206,11 @@ base::comment
 base::print.DLLInfoList
 base::vector
 base::system
-base::.First.sys
 base::save.image
-
 base::row.names<-.default
-
 base::format.info
 base::|.hexmode
-base::.F_dqrqy
 base::Sys.setFileTime
-base::.F_dqrxb
 base::setequal
 base::raw
 base::typeof
@@ -1221,10 +1219,8 @@ base::rev
 base::paste0
 base::rle
 base::conditionMessage
-base::.F_dqrcf
 base::row
 base::stderr
-base::.Last.value
 base::seq
 base::flush
 base::sin
@@ -1247,28 +1243,17 @@ base::is.character
 base::Sys.getenv
 base::!.octmode
 base::unz
-
 base::url
-base::Ops.Date
 base::as.environment
-
 base::mget
 base::print.eigen
 base::invokeRestartInteractively
 base::getNamespaceExports
-
-
 base::dim<-
-
 base::icuGetCollate
 base::dirname
-
 base::Sys.info
-base::.find.package
-base::as.Date.character
-
 base::xor
-
 base::allowInterrupts
 base::%in%
 base::julian
@@ -1282,16 +1267,11 @@ base::geterrmessage
 base::delayedAssign
 base::print.DLLRegisteredRoutines
 base::Sys.setlocale
-
-base::[.Date
-base::..getNamespace
 base::levels<-.factor
 base::range
-
 base::deparse
 base::pairlist
 base::sinpi
-
 base::print.NativeRoutineList
 base::psigamma
 base::file.access
@@ -1301,34 +1281,21 @@ base::getRversion
 base::droplevels
 base::determinant.matrix
 base::stdout
-
 base::suspendInterrupts
-
-base::.F_dqrqty
 base::trace
 base::callCC
-base::.getNamespace
-
 base::rowMeans
-base::.isOpen
 base::format.packageInfo
-base::.F_dqrrsd
 base::print.default
 base::shQuote
 base::cut.default
 base::range.default
 base::structure
 base::mode
-
 base::attributes
 
-base::all.names
 base::as.character
-
-
 base::simpleCondition
-
-
 base::endsWith
 base::print.connection
 base::&.octmode
@@ -1339,11 +1306,8 @@ base::asS4
 base::with.default
 base::args
 base::break
-
 base::matrix
-
 base::basename
-base::.Traceback
 base::lbeta
 base::asin
 base::summary.default
@@ -1353,19 +1317,13 @@ base::Sys.which
 base::ncol
 base::return
 base::atan
-
-
 base::socketConnection
-base::format.Date
 base::getConnection
 base::tryCatch
 base::attr
 base::tracemem
-
 base::format.hexmode
 base::beta
-
-base::summary.Date
 base::next
 base::Sys.getlocale
 base::lower.tri
@@ -1374,8 +1332,6 @@ base::union
 base::write
 base::units
 base::cbind
-
-
 base::month.abb
 base::diag<-
 base::Sys.unsetenv
@@ -1384,129 +1340,87 @@ base::scale.default
 base::invokeRestart
 base::is.na<-.factor
 
-base::all.equal.language
 base::bitwOr
-base::.Library.site
-base::.packageStartupMessage
 base::close.connection
 base::row.names<-
 base::trimws
-base::.Call.graphics
-base::.C_R_addTaskCallback
 base::unserialize
-
-base::.amatch_bounds
-base::.S3_methods_table
-base::.row_names_info
 base::standardGeneric
-base::.F_dqrdc2
 base::[.Dlist
-
 base::R.home
 base::unique.default
 base::sys.frame
 base::sys.source
-
 base::clearPushBack
-base::.leap.seconds
-
 base::bindtextdomain
 base::lgamma
 base::aperm.table
 base::getLoadedDLLs
-
-base::as.Date.factor
 base::format.libraryIQR
 base::unique
-
 base::merge.default
 base::ifelse
 base::is.atomic
-base::+.Date
 base::sys.parents
 base::body
 base::as.character.default
 base::rep.int
-
-base::xtfrm.Date
 base::norm
-
 base::as.list.factor
 base::retracemem
 base::local
 base::expression
 base::Reduce
+-->stop
 base::signalCondition
 base::validEnc
 base::log10
 base::isSymmetric
 base::log1p
 base::is.expression
-
-
 base::sys.parent
 base::call
 base::is.object
 base::pos.to.env
-
 base::attributes<-
 base::sweep
-base::.C_R_removeTaskCallback
-base::.libPaths
-base::.getNamespaceInfo
-
 base::encodeString
 base::trunc
 base::system.time
-
 base::[.hexmode
 base::bitwShiftR
 base::nrow
 base::bitwShiftL
 base::print.restart
 base::RNGversion
-
 base::[.table
-
 base::withVisible
 base::file.create
 base::getHook
-
 base::row.names.default
 base::print.AsIs
 base::Filter
-
 base::single
 base::attr.all.equal
-
-base::.primUntrace
 base::factorial
 base::lfactorial
-
 base::colnames
 base::dontCheck
-
 base::all.equal.list
 base::levels
-base::.colMeans
 base::levels<-
 base::labels
-base::.dynLibs
 base::isatty
 base::file.remove
 base::ordered
-base::...length
 base::exists
 base::prettyNum
 base::isRestart
 base::setTimeLimit
-
-base::.__H__.cbind
 base::list.dirs
 base::truncate
 base::formals<-
 base::quarters
-base::.External
 base::xtfrm.factor
 base::oldClass
 base::as.function.default
@@ -1514,22 +1428,15 @@ base::chol
 base::file.rename
 base::loadedNamespaces
 base::all.equal.factor
-base::.BaseNamespaceEnv
 base::truncate.connection
 base::is.finite
-
 base::labels.default
 base::strwrap
-base::.Internal
-
 base::tolower
 base::gzfile
-base::.Fortran
 base::last.warning
-
 base::env.profile
 base::is.na
-
 base::open.connection
 base::is.qr
 base::duplicated
@@ -1537,207 +1444,86 @@ base::writeBin
 base::flush.connection
 base::rcond
 base::is.ordered
-
 base::isSeekable
 base::as.ordered
 base::[.simple.list
 base::iconv
 base::tempdir
-
-
 base::print.octmode
 base::summary.proc_time
 base::chol2inv
-base::as.character.Date
-
 base::Sys.timezone
-base::quarters.Date
 base::stopifnot
-
 base::packBits
-
 base::strrep
 base::force
-
-
 base::format
 base::NextMethod
-base::..deparseOpts
-base::.TAOCP1997init
 base::Vectorize
 base::getNamespaceUsers
 base::cosh
 base::open
-
-
 base::print.summary.table
 base::substr
 base::cospi
-
 base::c.warnings
 base::[.warnings
 base::print.packageInfo
 base::NCOL
 base::is.numeric
 base::strtoi
-base::.path.package
-base::.GenericArgsEnv
 base::rep_len
 
-base::date
-base::names<-
-base::closeAllConnections
-base::as.logical
-base::getDLLRegisteredRoutines
-base::round
-base::file.exists
-base::.F_dtrco
-base::polyroot
-base::.kronecker
-base::.traceback
-base::browser
-base::is.double
-base::months
-base::toupper
-base::duplicated.default
-base::.bincode
-
-base::toString
-base::socketSelect
-base::print.libraryIQR
-base::prop.table
-base::new.env
-base::which
-
-base::while
-base::is.element
-base::as.raw
-base::nzchar
-base::replace
-base::complex
-base::dget
-base::environmentIsLocked
-base::.Deprecated
-base::alist
-base::is.list
-base::Ops.factor
-base::setdiff
-base::pmin.int
-base::slice.index
-base::getAllConnections
-base::duplicated.warnings
-
-base::ceiling
-base::diag
-base::as.complex
-base::sequence
-base::diff
-base::.doSortWrap
-base::anyDuplicated
-base::all.equal.environment
-base::pipe
-base::ISOdatetime
-base::replicate
-
-base::lazyLoadDBfetch
-base::conflicts
-base::.rmpkg
-base::as.Date
-
-base::mean.default
-base::cumprod
-base::as.double
 
 
-base::findRestart
 
 
-base::findPackageEnv
-base::pmax
-base::getNamespaceImports
 
-base::pmin
-base::as.character.srcref
-base::trunc.Date
-base::print.hexmode
-base::provideDimnames
-base::match.arg
-base::enquote
-base::file.path
-base::as.character.condition
-base::.Platform
-base::|.octmode
-base::memDecompress
 
-base::lazyLoad
-base::srcref
 
-base::t.default
-base::warning
-base::.__S3MethodsTable__.
-base::substring
-base::commandArgs
 
-base::file.symlink
-base::[.DLLInfoList
-base::getCallingDLLe
 
-base::NROW
-base::match.fun
-base::dput
-base::tempfile
-base::...elt
-base::print.by
-base::summary.matrix
-base::Summary.ordered
-base::.Script
-base::mode<-
-base::La.svd
-base::rawConnection
-base::format.AsIs
-base::is.integer
-base::prod
-base::as.integer
-base::drop
-base::Sys.umask
-base::.doTrace
-base::browserText
 
-base::bindingIsActive
-base::file.copy
 
-base::eigen
-base::is.function
-base::month.name
-base::digamma
-base::l10n_info
-base::detach
 
-base::integer
-base::getCallingDLL
-base::tracingState
-base::as.function
-base::attach
-base::dump
 
-base::is.recursive
-base::unlink
-base::seq_along
-base::pcre_config
 
-base::unlist
 
-base::all.equal
-base::regmatches
 
-base::.Device
-base::.tryResumeInterrupt
-base::getNamespaceName
-base::parent.frame
-base::factor
-base::message
-base::lockBinding
-base::.valid.factor
-base::Position
 
-base::.Defunct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
