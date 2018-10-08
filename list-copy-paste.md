@@ -40,6 +40,35 @@
 
 ### language
 ```R
+base::is.expression
+base::sys.parent
+base::call
+base::is.object
+base::attributes<-
+base::[.hexmode
+base::bitwShiftR
+base::bitwShiftL
+base::RNGversion #older version of .RNGKind
+base::withVisible
+base::print.AsIs
+base::Filter
+base::single
+base::attr.all.equal
+base::dontCheck
+base::all.equal.list
+base::formals<-
+base::as.function.default
+base::is.finite
+base::is.na
+base::duplicated
+base::print.octmode
+base::summary.proc_time
+base::stopifnot
+base::force
+base::format
+base::NextMethod
+base::Vectorize # like "arrayrify" or "multiplex"
+base::is.numeric
 base::Im #(give imaginary part of a complex number)
 base::Re
 base::packageHasNamespace
@@ -111,6 +140,12 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 ```
 base::gamma
 base::digamma
+base::factorial
+base::lfactorial
+base::besselI
+base::besselJ
+base::besselK
+base::besselY
 ```
 
 ### version string management
@@ -165,6 +200,8 @@ base::utf8ToInt
 
 ### date and time classes POSIXt POSIXct POSIXlt 
 ```R
+base::quarters
+base::Sys.timezone
 base::Ops.POSIXt
 base::as.POSIXlt.default
 base::length.POSIXlt
@@ -267,6 +304,9 @@ base::La_version #lapack version_
 
 ### QR decomposition
 ```R
+base::chol # lapack routine dpstrf
+base::is.qr
+base::chol2inv #inverse from choleski decomp
 base::qr.Q  #reconstruct Q part of QR decomposition from `qr` object_
 base::qr.R  #reconstruct R part of QR decomposition from `qr` object_
 base::qr.X
@@ -305,6 +345,23 @@ base::eapply
 
 ### io
 ```R
+base::readChar
+base::file
+base::file.create
+base::isatty
+base::file.remove
+base::list.dirs
+base::truncate
+base::file.rename
+base::truncate.connection
+base::gzfile
+base::open.connection
+base::writeBin
+base::flush.connection
+base::isSeekable
+base::tempdir
+base::open
+base::fifo
 base::summary.connection
 base::file.choose
 base::closeAllConnections
@@ -330,14 +387,6 @@ base::dump #text representation of R objects#
 base::unlink #deletes files#
 base::file.copy #copy a file#
 base::browserText #browser related, not a "browser" here is a user-feedback-console, like a prompt#
-```
-
-### not need in JS
-```R
-base::require
-base::library.dynam
-base::unique.warnings
-base::rm remove identifier from environment
 ```
 
 ### internal
@@ -463,8 +512,7 @@ base::.gt
 base::.gtn
 ```
 
-
-### difftime
+#### difftime
 ```R
 base::units.difftime
 base::xtfrm.difftime
@@ -490,6 +538,7 @@ base::Summary.difftime
 
 ### data.frames
 ```R
+base::row.names.default
 base::duplicated.default
 base::print.by
 base::as.data.frame.matrix #_coerce matrix to a data.frame_
@@ -572,6 +621,7 @@ base::is.unsorted
 
 ### list
 ```R
+base::[.simple.list
 base::is.list
 base::unlist
 base::is.recursive #is an object list like or atomic_
@@ -579,8 +629,19 @@ base::as.function #convert object(list) to a function_
 base::replicate #replicate is a wrapper for the common use of sapply_
 ```
 
-### array
+### array (vector, matrix, array, table)
 ```R
+base::isSymmetric
+base::sweep
+base::nrow
+base::[.table
+base::colnames
+base::labels
+base::labels.default
+base::rcond
+base::print.summary.table
+base::NCOL
+base::rep_len
 base::colnames<-
 base::names<-
 base::prop.table
@@ -626,6 +687,11 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::log10
+base::log1p
+base::trunc
+base::cosh
+base::cospi
 base::ceiling
 base::pi
 base::pmin #vector based min_
@@ -636,10 +702,11 @@ base::mean.default
 base::setdiff
 base::is.element
 base::polyroot
+base::RNGversion
 ```
 
 ### dates
-```
+```R
 base::months
 base::month.name #built in constants_
 base::split.Date
@@ -681,7 +748,17 @@ base::trunc.Date
 ```
 
 ### string
-```
+```R
+base::validEnc
+base::encodeString
+base::prettyNum
+base::strwrap
+base::tolower
+base::iconv
+base::packBits
+base::strrep
+base::substr
+base::strtoi
 base::toupper
 base::paste
 base::startsWith
@@ -704,10 +781,11 @@ base::rank #ranking of numbers_
 # rank(x)
 #-> [1] 1.0 2.5 2.5 4.0 5.0
 base::xtfrm.AsIs
+base::xtfrm.factor
 ```
 
 ### condition number of a matrix
-```
+```R
 base::kappa.qr
 base::kappa.lm
 base::kappa.default
@@ -716,32 +794,37 @@ base::.kappa_tri
 ```
 
 ### conditioning
-```
+```R
 base::as.character.condition
 ```
 
 ### logicals
-```
+```R
 base::as.logical.factor
 ```
 
 ### factors 
 ### levels
-```
+```R
+base::ordered
+base::all.equal.factor
+base::levels
+base::is.ordered
 base::levels.default
 base::factor
 base::nlevels
 base::Summary.ordered
+base::as.ordered
+base::levels<-
 ```
 
 ### functions still needing to put in their categories (io, langauge, array, etc)
 
-```
-base::fifo
+```R
+base::exists
 base::substitute
 base::data.matrix
 base::all.equal.formula
-
 base::determinant
 base::print.noquote
 base::by.default
@@ -774,6 +857,7 @@ base::save
 base::function
 base::is.single
 base::default.stringsAsFactors
+-->stop()
 base::pmatch
 base::withRestarts
 base::scan
@@ -874,6 +958,7 @@ base::%o%
 base::eval.parent
 base::%x%
 base::pushBack
+-->stop()
 base::transform.default
 base::srcfilecopy
 base::restartFormals
@@ -974,6 +1059,7 @@ base::isS4
 base::isBaseNamespace
 base::Arg
 base::file.mtime
+-->stop
 base::setwd
 base::bitwNot
 base::getwd
@@ -1074,6 +1160,7 @@ base::restartDescription
 base::[<-
 base::autoload
 base::format.pval
+--> stop
 base::environment<-
 base::as.call
 base::with
@@ -1084,10 +1171,6 @@ base::agrepl
 base::comment<-
 base::seq_len
 base::rowsum.default
-base::besselI
-base::besselJ
-base::besselK
-base::besselY
 base::numeric
 base::withCallingHandlers
 base::open.srcfilecopy
@@ -1175,6 +1258,7 @@ base::print.summary.warnings
 base::pmax.int
 base::rownames<-
 base::license
+--> stop
 base::sys.save.image
 base::lazyLoadDBexec
 base::max.col
@@ -1274,6 +1358,7 @@ base::Sys.setlocale
 base::levels<-.factor
 base::range
 base::deparse
+-->stop
 base::pairlist
 base::sinpi
 base::print.NativeRoutineList
@@ -1297,7 +1382,6 @@ base::range.default
 base::structure
 base::mode
 base::attributes
-
 base::as.character
 base::simpleCondition
 base::endsWith
@@ -1343,7 +1427,6 @@ base::dyn.unload
 base::scale.default
 base::invokeRestart
 base::is.na<-.factor
-
 base::bitwOr
 base::close.connection
 base::row.names<-
@@ -1375,108 +1458,6 @@ base::retracemem
 base::local
 base::expression
 base::Reduce
--->stop
-base::signalCondition
-base::validEnc
-base::log10
-base::isSymmetric
-base::log1p
-base::is.expression
-base::sys.parent
-base::call
-base::is.object
-base::pos.to.env
-base::attributes<-
-base::sweep
-base::encodeString
-base::trunc
-base::system.time
-base::[.hexmode
-base::bitwShiftR
-base::nrow
-base::bitwShiftL
-base::print.restart
-base::RNGversion
-base::[.table
-base::withVisible
-base::file.create
-base::getHook
-base::row.names.default
-base::print.AsIs
-base::Filter
-base::single
-base::attr.all.equal
-base::factorial
-base::lfactorial
-base::colnames
-base::dontCheck
-base::all.equal.list
-base::levels
-base::levels<-
-base::labels
-base::isatty
-base::file.remove
-base::ordered
-base::exists
-base::prettyNum
-base::isRestart
-base::setTimeLimit
-base::list.dirs
-base::truncate
-base::formals<-
-base::quarters
-base::xtfrm.factor
-base::oldClass
-base::as.function.default
-base::chol
-base::file.rename
-base::loadedNamespaces
-base::all.equal.factor
-base::truncate.connection
-base::is.finite
-base::labels.default
-base::strwrap
-base::tolower
-base::gzfile
-base::last.warning
-base::env.profile
-base::is.na
-base::open.connection
-base::is.qr
-base::duplicated
-base::writeBin
-base::flush.connection
-base::rcond
-base::is.ordered
-base::isSeekable
-base::as.ordered
-base::[.simple.list
-base::iconv
-base::tempdir
-base::print.octmode
-base::summary.proc_time
-base::chol2inv
-base::Sys.timezone
-base::stopifnot
-base::packBits
-base::strrep
-base::force
-base::format
-base::NextMethod
-base::Vectorize
-base::getNamespaceUsers
-base::cosh
-base::open
-base::print.summary.table
-base::substr
-base::cospi
-base::c.warnings
-base::[.warnings
-base::print.packageInfo
-base::NCOL
-base::is.numeric
-base::strtoi
-base::rep_len
 ```
 
 

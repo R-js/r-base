@@ -1,7 +1,6 @@
 base::traceback  _stack trace_
 base::dynGet
-base::readChar
-base::file
+
 base::find.package
 base::autoloader _on demand loading of packages_
 base::untracemem _trace copying of objects_
