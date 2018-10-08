@@ -1,7 +1,7 @@
 # BASE
 
 
-## operators
+### operators
 
 |` list of operators`|
 |--------|
@@ -40,6 +40,9 @@
 
 ### language
 ```R
+base::is.na<-
+base::is.name #alias for is.symbol
+base::as.name #alias for as.symbol
 base::I
 base::registerS3methods
 base::c
@@ -90,12 +93,9 @@ base::quote #no real counterpart in JS, its an expression, but not evaluated
    v <- quote(1+1)
    2+eval(v)
    #-> [1] 4 
-```
 
-
-### looks like multiplex
 base::interaction
-```R
+#Example:
 > interaction(f23,f32, drop=F)
 [1] 1.1 1.2 1.3 2.4 2.5
 Levels: 1.1 2.1 1.2 2.2 1.3 2.3 1.4 2.4 1.5 2.5
@@ -104,9 +104,11 @@ Levels: 1.1 2.1 1.2 2.2 1.3 2.3 1.4 2.4 1.5 2.5
 Levels: 1.1 1.2 1.3 2.4 2.5
 ```
 
-### special function gamma
+### specials
+```
 base::gamma
 base::digamma
+```
 
 ### version string management
 ```R
@@ -142,25 +144,15 @@ base::[[.numeric_version
 base::is.package_version
 base::is.numeric_version
 base::rep.numeric_version
+base::evalq
 ```
 
-### missing value indicator (different then NULL)
-base::is.na<- "not avaiable" 
 
 ### namespace support, not to be called directly in R
 base::packageHasNamespace
 
-### fetch columnnames from matrices, dataframes, not vectors, not lists
-```
-looks weird, check out what do.NULL and `prefix` do here
-base::colnames<-
-```
-
-### prompts for a file name, ?
-base::file.choose
 
 ### function to work with streams, files, sockets, urls, whatever
-base::summary.connection
 
 
 ### subsetting, like [ but different 
@@ -338,8 +330,10 @@ base::tapply
 base::eapply
 ```
 
-## io
+### io
 ```
+base::summary.connection
+base::file.choose
 base::closeAllConnections
 base::file.exists
 base::socketSelect
@@ -490,10 +484,6 @@ base::.gt
 base::.gtn
 ```
 
-### evaluate R expression
-```
-base::evalq
-```
 
 ### difftime
 ```
@@ -519,13 +509,7 @@ base::is.numeric.
 base::Summary.difftime
 ```
 
-### JS Symbol equivalent
-```
-base::is.name alias for is.symbol
-base::as.name alias for as.symbol
-```
-
-### data frames
+### data.frames
 ```
 base::duplicated.default
 base::print.by
@@ -618,6 +602,7 @@ base::replicate _replicate is a wrapper for the common use of sapply_
 
 ### array
 ```
+base::colnames<-
 base::names<-
 base::prop.table
 base::replace
@@ -642,17 +627,14 @@ base::duplicated.
 base::anyDuplicated.array
 base::names
 base::which
-```
+### example
+# which(LETTERS == "R")
+# which(ll <- c(TRUE, FALSE, TRUE, NA, FALSE, FALSE, TRUE)) #> 1 3 7
+# names(ll) <- letters[seq(ll)]
+# which(ll)
+# which((1:12)%%2 == 0) # which are even?
+# which(1:10 > 3, arr.ind = TRUE)
 
-```R
-which(LETTERS == "R")
-which(ll <- c(TRUE, FALSE, TRUE, NA, FALSE, FALSE, TRUE)) #> 1 3 7
-names(ll) <- letters[seq(ll)]
-which(ll)
-which((1:12)%%2 == 0) # which are even?
-which(1:10 > 3, arr.ind = TRUE)
-```
-```
 base::simplify2
 base::as.array
 base::is.array
@@ -734,17 +716,16 @@ base::as.raw
 base::toString
 ```
 
-## statistical helpers
-base::rank _ranking of numbers_
-
-_example_: 
-```R
-> x=c(1,1.5,1.5,2,2.8)
-> rank(x)
-#-> [1] 1.0 2.5 2.5 4.0 5.0
+### statistical helpers
 ```
-
-base::xtfrm.AsIs _xtfrm is a form of ranking , assign ordinal values to elements_
+base::rank _ranking of numbers_
+#example 
+#
+# x=c(1,1.5,1.5,2,2.8)
+# rank(x)
+#-> [1] 1.0 2.5 2.5 4.0 5.0
+base::xtfrm.AsIs
+```
 
 ### condition number of a matrix
 ```
@@ -774,8 +755,7 @@ base::nlevels
 base::Summary.ordered
 ```
 
-
-#### unprocessed functions of r-base
+### unprocessed functions of r-base
 
 ```
 base::fifo
