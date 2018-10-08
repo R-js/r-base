@@ -266,36 +266,34 @@ base::La_version _lapack version_
 ```
 
 ### QR decomposition
-
-* base::qr.Q  _reconstruct Q part of QR decomposition from `qr` object_
-* base::qr.R  _reconstruct R part of QR decomposition from `qr` object_
-* base::qr.X
-* base::qr.coef
-* base::qr.default
-* base::qr.qy
-* base::qr.fitted
-* base::qr.qty
-* base::qr.resid
-* base::qr.solve _same as solve(qr)_
-* base::qr
-* qr
-
 ```R
-> A <- matrix(runif(12), 3)
-> b <- 1:3
-> qr.solve(A, b)
-[1]  8.456735  4.233530 -5.860061  0.000000
-> solve(qr(A, LAPACK = TRUE), b)
-[1]  8.456735  4.233530 -5.860061  0.000000
+base::qr.Q  #reconstruct Q part of QR decomposition from `qr` object_
+base::qr.R  #reconstruct R part of QR decomposition from `qr` object_
+base::qr.X
+base::qr.coef
+base::qr.default
+base::qr.qy
+base::qr.fitted
+base::qr.qty
+base::qr.resid
+base::qr.solve _same as solve(qr)_
+base::qr
+# Examples:
+# A <- matrix(runif(12), 3)
+# b <- 1:3
+# qr.solve(A, b)
+# -> [1]  8.456735  4.233530 -5.860061  0.000000
+# solve(qr(A, LAPACK = TRUE), b)
+# ->[1]  8.456735  4.233530 -5.860061  0.000000
+base::solve.qr
+base::solve.default
+base::backsolve   #wrapper for the level-3 BLAS routine 'dtrsm'.
+base::forwardsolve  #wrapper for the level-3 BLAS routine 'dtrsm'.
 ```
-* base::solve.qr
-* base::solve.default
-* base::backsolve   wrapper for the level-3 BLAS routine 'dtrsm'.
-* base::forwardsolve  wrapper for the level-3 BLAS routine 'dtrsm'.
 
 ### Xapply  
-```
-base::rapply recursive version of lapply
+```R
+base::rapply #recursive version of lapply
 base::lapply
 base::apply
 base::vapply
@@ -306,7 +304,7 @@ base::eapply
 ```
 
 ### io
-```
+```R
 base::summary.connection
 base::file.choose
 base::closeAllConnections
@@ -335,7 +333,7 @@ base::browserText _browser related, not a "browser" here is a user-feedback-cons
 ```
 
 ### not need in JS
-```
+```R
 base::require
 base::library.dynam
 base::unique.warnings
@@ -343,7 +341,7 @@ base::rm remove identifier from environment
 ```
 
 ### internal
-```
+```R
 base::getOption
 base::options
 base::.Options
@@ -467,7 +465,7 @@ base::.gtn
 
 
 ### difftime
-```
+```R
 base::units.difftime
 base::xtfrm.difftime
 base::as.double.difftime
@@ -491,7 +489,7 @@ base::Summary.difftime
 ```
 
 ### data.frames
-```
+```R
 base::duplicated.default
 base::print.by
 base::as.data.frame.matrix __coerce matrix to a data.frame_
@@ -553,7 +551,7 @@ base::as.data.frame.noquote
 ```
 
 ### aux
-```
+```R
 base::LETTERS
 base::parse _'parse' returns the parsed but unevaluated expressions in a list._
 base::by _Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
@@ -563,7 +561,7 @@ base::match _same as %in%_
 ```
 
 ### sorting
-```
+```R
 base::order _sort data_
 base::sort _alias of order_
 base::sort.list
@@ -573,7 +571,7 @@ base::is.unsorted
 ```
 
 ### list
-```
+```R
 base::is.list
 base::unlist
 base::is.recursive _is an object list like or atomic_
@@ -582,22 +580,22 @@ base::replicate _replicate is a wrapper for the common use of sapply_
 ```
 
 ### array
-```
+```R
 base::colnames<-
 base::names<-
 base::prop.table
 base::replace
 base::slice.index
 base::diag
-base::sequence _run `seq\_len` over a vector of values_
+base::sequence #run `seq\_len` over a vector of values_
 base::provideDimnames
-base::t.default _matrix transpose_
-base::NROW _number of rows in an array_
+base::t.default #matrix transpose_
+base::NROW #number of rows in an array_
 base::summary.matrix
-base::La.svd _svd decomposition (la=lapack)_
-base::prod _product of vectors_
-base::drop _delete dimensions that have only 1 level_
-base::eigen _spectral decomposition of matrix_
+base::La.svd #svd decomposition (la=lapack)_
+base::prod #product of vectors_
+base::drop #delete dimensions that have only 1 level_
+base::eigen #spectral decomposition of matrix_
 base::colMeans
 base::t
 base::unique.array
@@ -620,20 +618,20 @@ base::simplify2
 base::as.array
 base::is.array
 base::as.array.default
-base::aperm _array transposition_
+base::aperm #array transposition_
 base::aperm.default
-base::kronecker _kronecker product on arrays_
+base::kronecker #kronecker product on arrays_
 base::as.matrix.data.frame
 ```
 
 ### math
-```
+```R
 base::ceiling
 base::pi
-base::pmin _vector based min_
+base::pmin #vector based min_
 base::pmin.int
 base::pmax
-base::cumprod _cummulative sum, products and extremes_
+base::cumprod #cummulative sum, products and extremes_
 base::mean.default
 base::setdiff
 base::is.element
