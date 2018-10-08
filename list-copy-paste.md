@@ -262,7 +262,7 @@ base::inverse.rle
 ### lapack
 
 ```R
-base::La_version _lapack version_  
+base::La_version #lapack version_  
 ```
 
 ### QR decomposition
@@ -276,7 +276,7 @@ base::qr.qy
 base::qr.fitted
 base::qr.qty
 base::qr.resid
-base::qr.solve _same as solve(qr)_
+base::qr.solve #same as solve(qr)_
 base::qr
 # Examples:
 # A <- matrix(runif(12), 3)
@@ -313,23 +313,23 @@ base::socketSelect
 base::dget
 base::getAllConnections
 base::pipe
-base::print.hexmode _print numbers in hex_
+base::print.hexmode #print numbers in hex_
 base::file.path
-base::memDecompress _compress or decompress in memory_
-base::lazyLoad _lazyload R objects_
+base::memDecompress #compress or decompress in memory#
+base::lazyLoad #lazyload R objects#
 base::file.symlink
-base::dput _write object to file_
-base::tempfile _create named temporary file_
-base::mode<- _storage mode of an R object_
+base::dput #write object to file#
+base::tempfile #create named temporary file#
+base::mode<- #storage mode of an R object#
 base::rawConnection
 base::Sys.umask
 base::gzcon
-base::ls _show directory entries_
-base::readBin _read binary data_
-base::dump _text representation of R objects_
-base::unlink _deletes files_
-base::file.copy _copy a file_
-base::browserText _browser related, not a "browser" here is a user-feedback-console, like a prompt_
+base::ls #show directory entries#
+base::readBin #read binary data#
+base::dump #text representation of R objects#
+base::unlink #deletes files#
+base::file.copy #copy a file#
+base::browserText #browser related, not a "browser" here is a user-feedback-console, like a prompt#
 ```
 
 ### not need in JS
@@ -350,7 +350,7 @@ base::.POSIXct
 base::.POSIXlt
 base::lazyLoadDBfetch
 base::.difftime
-base::.doSortWrap _only user-visible because of the special nature of the base namespace_
+base::.doSortWrap #only user-visible because of the special nature of the base namespace_
 base::.NotYetImplemented
 base::.mapply
 base::.noGenerics
@@ -373,7 +373,7 @@ base::.userHooksEnv
 base::.Library
 base::.ArgsEnv
 base::.popath
-base::.format.zeros _auxiliary function of 'prettyNum()'  re-formats the zeros in a vector 'x' of formatted numbers_
+base::.format.zeros #auxiliary function of 'prettyNum()'  re-formats the zeros in a vector 'x' of formatted numbers_
 base::.C_R_getTaskCallbackNames
 base::.detach
 base::.getRequiredPackages
@@ -454,7 +454,7 @@ base::.Device
 base::.tryResumeInterrupt
 base::.valid.factor
 base::.Defunct
-base::.set_row_names _prolly an internal
+base::.set_row_names #prolly an internal
 base::.C
 base::.encode_numeric
 base::.handleSimpleError
@@ -492,7 +492,7 @@ base::Summary.difftime
 ```R
 base::duplicated.default
 base::print.by
-base::as.data.frame.matrix __coerce matrix to a data.frame_
+base::as.data.frame.matrix #_coerce matrix to a data.frame_
 base::dimnames.data.frame
 base::xpdrows.data.frame
 base::transform.data.frame
@@ -553,17 +553,17 @@ base::as.data.frame.noquote
 ### aux
 ```R
 base::LETTERS
-base::parse _'parse' returns the parsed but unevaluated expressions in a list._
-base::by _Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
-base::gc _garbage collection_
-base::gl _Generate factors by specifying the pattern of their levels._
-base::match _same as %in%_
+base::parse #'parse' returns the parsed but unevaluated expressions in a list._
+base::by #Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
+base::gc #garbage collection_
+base::gl #Generate factors by specifying the pattern of their levels._
+base::match #same as %in%_
 ```
 
 ### sorting
 ```R
-base::order _sort data_
-base::sort _alias of order_
+base::order #sort data_
+base::sort #alias of order_
 base::sort.list
 base::sort.int
 base::sort.default
@@ -574,9 +574,9 @@ base::is.unsorted
 ```R
 base::is.list
 base::unlist
-base::is.recursive _is an object list like or atomic_
-base::as.function _convert object(list) to a function_
-base::replicate _replicate is a wrapper for the common use of sapply_
+base::is.recursive #is an object list like or atomic_
+base::as.function #convert object(list) to a function_
+base::replicate #replicate is a wrapper for the common use of sapply_
 ```
 
 ### array
@@ -641,7 +641,7 @@ base::polyroot
 ### dates
 ```
 base::months
-base::month.name _built in constants_
+base::month.name #built in constants_
 base::split.Date
 base::Summary.Date
 base::rep.Date
@@ -697,7 +697,7 @@ base::toString
 
 ### statistical helpers
 ```R
-base::rank _ranking of numbers_
+base::rank #ranking of numbers_
 #example 
 #
 # x=c(1,1.5,1.5,2,2.8)
