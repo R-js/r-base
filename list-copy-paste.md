@@ -1,10 +1,8 @@
 # BASE
 
-### search the inet because unclear/missing docs etc
-```
-
 
 ## operators
+
 |` list of operators`|
 |--------|
 |`base::[[`|
@@ -39,27 +37,14 @@
 |`base::[[.`|
 |`base::[[<-`|
 
-### S3 routing of as.matrix to data.frame class
-
-
-### TRUE
-base::F
-
-### Inhibit conversion
-base::I
-
-### create S3 methods
-base::registerS3methods
-
-### logical TRUE
-base::T
-
-### collection
-base::c
-
 
 ### language
 ```R
+base::I
+base::registerS3methods
+base::c
+base::F
+base::T
 base::as.logical
 base::browser
 base::is.double
