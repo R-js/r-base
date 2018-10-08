@@ -734,7 +734,7 @@ base::nlevels
 base::Summary.ordered
 ```
 
-### unprocessed functions of r-base
+### functions still needing to put in their categories (io, langauge, array, etc)
 
 ```
 base::fifo
