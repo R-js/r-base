@@ -1,7 +1,8 @@
 # BASE
 
 ### search the inet because unclear/missing docs etc
-base::lazyLoadDBfetch
+```
+
 
 ## operators
 |` list of operators`|
@@ -58,6 +59,7 @@ base::c
 
 
 ### language
+```R
 base::as.logical
 base::browser
 base::is.double
@@ -98,6 +100,13 @@ base::do.call
 base::getNamespaceName
 base::all.equal
 base::round
+base::quote #no real counterpart in JS, its an expression, but not evaluated
+#Example:
+   v <- quote(1+1)
+   2+eval(v)
+   #-> [1] 4 
+```
+
 
 ### looks like multiplex
 base::interaction
@@ -115,6 +124,7 @@ base::gamma
 base::digamma
 
 ### version string management
+```R
 base::regmatches<-
 returns class `["package_version", "numeric_version"]`
 base::as.package_version  
@@ -147,6 +157,7 @@ base::[[.numeric_version
 base::is.package_version
 base::is.numeric_version
 base::rep.numeric_version
+```
 
 ### missing value indicator (different then NULL)
 base::is.na<- "not avaiable" 
@@ -155,8 +166,10 @@ base::is.na<- "not avaiable"
 base::packageHasNamespace
 
 ### fetch columnnames from matrices, dataframes, not vectors, not lists
+```
 looks weird, check out what do.NULL and `prefix` do here
 base::colnames<-
+```
 
 ### prompts for a file name, ?
 base::file.choose
@@ -166,17 +179,22 @@ base::summary.connection
 
 
 ### subsetting, like [ but different 
+```
 base::subset.default
 base::subset
 base::.subset2
 base::subset.matrix
 base::subset.data.frame
+```
 
 ### utf8ToInt
+```
 _convert utf8 to utf32_
 base::utf8ToInt
+```
 
 ### POSIXt date time is represented by named components like `year`, `month`,`day`, `hour`, etc
+```
 Note that POSIXlt and POSIXct are wrappers around a common class POSIXt  
 base::Ops.POSIXt
 base::as.POSIXlt.default
@@ -248,23 +266,18 @@ base::[<-.POSIXct
 base::[<-.POSIXlt
 base::as.POSIXct.Date
 base::split.POSIXct
-
-
-#### * base::quote no real counterpart in JS, its an expression, but not evaluated
-Example:
-```R
-   v <- quote(1+1)
-   2+eval(v)
-   #-> [1] 4 
 ```
 
-### run length encoding (rle)
-base::inverse.rle
-# x <- rev(rep(6:10, 1:5))
-#     rle(x)
-#     ## lengths [1:5]  5 4 3 2 1
-#     ## values  [1:5] 10 9 8 7 6
 
+### run length encoding (rle)
+
+base::inverse.rle
+```R
+x <- rev(rep(6:10, 1:5))
+rle(x)
+#lengths [1:5]  5 4 3 2 1
+#values  [1:5] 10 9 8 7 6
+```
 
 ### base::memory.profile
 ```R
@@ -284,6 +297,7 @@ base::inverse.rle
 base::La_version _lapack version_  
 
 ### Options
+```
 We dont do globals!
 base::getOption
 base::options
@@ -291,10 +305,13 @@ base::.Options
 base::.cache_class
 base::.POSIXct
 base::.POSIXlt
+```
 
 ### complex Numbers
+```
 base::Im (give imaginary part of a complex number)
 base::Re
+```
 
 ### QR decomposition
 
@@ -325,6 +342,7 @@ base::Re
 * base::forwardsolve  wrapper for the level-3 BLAS routine 'dtrsm'.
 
 ### Xapply  
+```
 base::rapply recursive version of lapply
 base::lapply
 base::apply
@@ -333,8 +351,10 @@ base::sapply
 base::mapply
 base::tapply
 base::eapply
+```
 
 ## io
+```
 base::closeAllConnections
 base::file.exists
 base::socketSelect
@@ -358,14 +378,19 @@ base::dump _text representation of R objects_
 base::unlink _deletes files_
 base::file.copy _copy a file_
 base::browserText _browser related, not a "browser" here is a user-feedback-console, like a prompt_
+```
 
 ### not need in JS
+```
 base::require
 base::library.dynam
 base::unique.warnings
 base::rm remove identifier from environment
+```
 
 ### internal
+```
+base::lazyLoadDBfetch
 base::.difftime
 base::.doSortWrap _only user-visible because of the special nature of the base namespace_
 base::.NotYetImplemented
@@ -478,11 +503,15 @@ base::.handleSimpleError
 base::.GlobalEnv
 base::.gt
 base::.gtn
+```
 
 ### evaluate R expression
+```
 base::evalq
+```
 
 ### difftime
+```
 base::units.difftime
 base::xtfrm.difftime
 base::as.double.difftime
@@ -503,12 +532,16 @@ base::as.data.frame.difftime
 base::/.difftime
 base::is.numeric.
 base::Summary.difftime
+```
 
 ### JS Symbol equivalent
+```
 base::is.name alias for is.symbol
 base::as.name alias for as.symbol
+```
 
 ### data frames
+```
 base::duplicated.default
 base::print.by
 base::as.data.frame.matrix __coerce matrix to a data.frame_
@@ -567,31 +600,39 @@ base::as.data.frame.logical
 base::as.data.frame.ts
 base::format.data.frame
 base::as.data.frame.noquote
+```
 
 ### aux
+```
 base::LETTERS
 base::parse _'parse' returns the parsed but unevaluated expressions in a list._
 base::by _Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
 base::gc _garbage collection_
 base::gl _Generate factors by specifying the pattern of their levels._
 base::match _same as %in%_
+```
 
 ### sorting
+```
 base::order _sort data_
 base::sort _alias of order_
 base::sort.list
 base::sort.int
 base::sort.default
 base::is.unsorted
+```
 
 ### list
+```
 base::is.list
 base::unlist
 base::is.recursive _is an object list like or atomic_
 base::as.function _convert object(list) to a function_
 base::replicate _replicate is a wrapper for the common use of sapply_
+```
 
 ### array
+```
 base::names<-
 base::prop.table
 base::replace
@@ -616,6 +657,8 @@ base::duplicated.
 base::anyDuplicated.array
 base::names
 base::which
+```
+
 ```R
 which(LETTERS == "R")
 which(ll <- c(TRUE, FALSE, TRUE, NA, FALSE, FALSE, TRUE)) #> 1 3 7
@@ -623,6 +666,7 @@ names(ll) <- letters[seq(ll)]
 which(ll)
 which((1:12)%%2 == 0) # which are even?
 which(1:10 > 3, arr.ind = TRUE)
+```
 ```
 base::simplify2
 base::as.array
@@ -632,8 +676,10 @@ base::aperm _array transposition_
 base::aperm.default
 base::kronecker _kronecker product on arrays_
 base::as.matrix.data.frame
+```
 
 ### math
+```
 base::ceiling
 base::pi
 base::pmin _vector based min_
@@ -644,9 +690,10 @@ base::mean.default
 base::setdiff
 base::is.element
 base::polyroot
-
+```
 
 ### dates
+```
 base::months
 base::month.name _built in constants_
 base::split.Date
@@ -685,8 +732,10 @@ base::date
 base::ISOdatetime
 base::as.Date
 base::trunc.Date
+```
 
 ### string
+```
 base::toupper
 base::paste
 base::startsWith
@@ -698,10 +747,11 @@ base::substring
 base::nzchar
 base::as.raw
 base::toString
-
+```
 
 ## statistical helpers
 base::rank _ranking of numbers_
+
 _example_: 
 ```R
 > x=c(1,1.5,1.5,2,2.8)
@@ -712,27 +762,37 @@ _example_:
 base::xtfrm.AsIs _xtfrm is a form of ranking , assign ordinal values to elements_
 
 ### condition number of a matrix
+```
 base::kappa.qr
 base::kappa.lm
 base::kappa.default
 base::kappa
 base::.kappa_tri
+```
 
 ### conditioning
+```
 base::as.character.condition
-
+```
 
 ### logicals
+```
 base::as.logical.factor
+```
 
 ### factors 
 ### levels
+```
 base::levels.default
 base::factor
 base::nlevels
 base::Summary.ordered
+```
 
 
+#### unprocessed functions of r-base
+
+```
 base::fifo
 base::substitute
 base::data.matrix
@@ -1473,7 +1533,7 @@ base::NCOL
 base::is.numeric
 base::strtoi
 base::rep_len
-
+```
 
 
 
