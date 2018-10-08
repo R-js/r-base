@@ -40,6 +40,9 @@
 
 ### language
 ```R
+base::Im #(give imaginary part of a complex number)
+base::Re
+base::packageHasNamespace
 base::is.na<-
 base::is.name #alias for is.symbol
 base::as.name #alias for as.symbol
@@ -59,27 +62,27 @@ base::Ops.factor
 base::as.complex
 base::all.equal.environment
 base::as.double
-base::findPackageEnv _find objects in package base_
+base::findPackageEnv #find objects in package base_
 base::getNamespaceImports
 base::match.arg
-base::all.names _get tokens(expr) from an expression_
-base::enquote _quote expressions_
-base::|.octmode _octal mode?_
-base::warning _warning message_
-base::match.fun _extract function by name_
-base::format.AsIs _note:"AsIs" is a class , format an R object , pretty print_
+base::all.names #get tokens(expr) from an expression_
+base::enquote #quote expressions_
+base::|.octmode #octal mode?_
+base::warning #warning message_
+base::match.fun #extract function by name_
+base::format.AsIs #note:"AsIs" is a class , format an R object , pretty print_
 base::is.integer
 base::as.integer
-base::as.single _double single precision vectors_
+base::as.single #double single precision vectors_
 base::is.function
-base::l10n_info _report localisation information_
+base::l10n_info #report localisation information_
 base::integer
-base::pcre_config _find conversion of strings to/from encoding_
+base::pcre_config #find conversion of strings to/from encoding_
 base::parent.frame
 base::Position
 base::isNamespace
-base::lockBinding _locking functions to environments_
-base::message _simple diagnostic messages_
+base::lockBinding #locking functions to environments_
+base::message #simple diagnostic messages_
 base::all.equal.language
 base::attr<-
 base::asNamespace
@@ -113,7 +116,6 @@ base::digamma
 ### version string management
 ```R
 base::regmatches<-
-returns class `["package_version", "numeric_version"]`
 base::as.package_version  
 base::unique.numeric_version
 base::package_version
@@ -147,16 +149,8 @@ base::rep.numeric_version
 base::evalq
 ```
 
-
-### namespace support, not to be called directly in R
-base::packageHasNamespace
-
-
-### function to work with streams, files, sockets, urls, whatever
-
-
 ### subsetting, like [ but different 
-```
+```R
 base::subset.default
 base::subset
 base::.subset2
@@ -165,14 +159,12 @@ base::subset.data.frame
 ```
 
 ### utf8ToInt
-```
-_convert utf8 to utf32_
+```R
 base::utf8ToInt
 ```
 
-### POSIXt date time is represented by named components like `year`, `month`,`day`, `hour`, etc
-```
-Note that POSIXlt and POSIXct are wrappers around a common class POSIXt  
+### date and time classes POSIXt POSIXct POSIXlt 
+```R
 base::Ops.POSIXt
 base::as.POSIXlt.default
 base::length.POSIXlt
@@ -200,7 +192,6 @@ base::as.POSIXlt.Date
 base::[[.POSIXct
 base::[[.POSIXlt
 base::as.POSIXlt.POSIXct
-
 base::unique.POSIXlt
 base::as.list.POSIXct
 base::as.list.POSIXlt
@@ -245,15 +236,14 @@ base::as.POSIXct.Date
 base::split.POSIXct
 ```
 
-
 ### run length encoding (rle)
 
-base::inverse.rle
 ```R
-x <- rev(rep(6:10, 1:5))
-rle(x)
-#lengths [1:5]  5 4 3 2 1
-#values  [1:5] 10 9 8 7 6
+base::inverse.rle
+# x <- rev(rep(6:10, 1:5))
+#rle(x)
+# -> lengths [1:5]  5 4 3 2 1
+# -> values  [1:5] 10 9 8 7 6
 ```
 
 ### base::memory.profile
@@ -271,23 +261,8 @@ rle(x)
 
 ### lapack
 
+```R
 base::La_version _lapack version_  
-
-### Options
-```
-We dont do globals!
-base::getOption
-base::options
-base::.Options
-base::.cache_class
-base::.POSIXct
-base::.POSIXlt
-```
-
-### complex Numbers
-```
-base::Im (give imaginary part of a complex number)
-base::Re
 ```
 
 ### QR decomposition
@@ -369,6 +344,12 @@ base::rm remove identifier from environment
 
 ### internal
 ```
+base::getOption
+base::options
+base::.Options
+base::.cache_class
+base::.POSIXct
+base::.POSIXlt
 base::lazyLoadDBfetch
 base::.difftime
 base::.doSortWrap _only user-visible because of the special nature of the base namespace_
@@ -717,7 +698,7 @@ base::toString
 ```
 
 ### statistical helpers
-```
+```R
 base::rank _ranking of numbers_
 #example 
 #
