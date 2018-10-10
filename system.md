@@ -36,4 +36,20 @@ base::require
 base::library.dynam
 base::unique.warnings
 base::rm remove identifier from environment
+base::retracemem #marks an object if any function "copies" it
+base::sys.parents #access function call-stack
+base::sys.parent 
+base::format.libraryIQR #loading attaching listing of packages
+base::getLoadedDLLs #get dll's loaded in current session
+base::[.Dlist
+base::standardGeneric #S4 methods
+base::dyn.unload
+base::Sys.unsetenv
+base::tracemem
+base::Sys.which
+base::format.packageInfo
+base::callCC
+base::trace
+base::suspendInterrupts
+base::print.NativeRoutineList
 ```

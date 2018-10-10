@@ -40,6 +40,31 @@
 
 ### language
 ```R
+base::getRversion
+base::structure
+base::mode
+base::&.octmode
+base::parent.env<-
+base::split #Divide into Groups and Reassemble
+base::asS3
+base::asS4
+base::with.default 
+base::args
+base::srcfile
+base::tryCatch
+base::attr
+base::next #same as continue in for/do/while loops
+base::union
+base::invokeRestart #condition system
+base::bitwOr
+base::bindtextdomain # translate text messages
+base::ifelse #if else construct  example: sqrt(ifelse(x >= 0, x, NA))  # no warning
+base::is.atomic #object is atomic or recursive
+base::body # manipulate the body of a function
+base::rep.int
+base::local #evaluate an "expression class"
+base::expression #creates Unevaluated Expressions, it has class "expression"
+base::Reduce #FP "reduce"
 base::is.expression
 base::sys.parent
 base::call
@@ -138,6 +163,9 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 
 ### specials
 ```
+base::lbeta
+base::beta
+base::lgamma
 base::gamma
 base::digamma
 base::factorial
@@ -152,6 +180,7 @@ base::besselY
 ```R
 base::regmatches<-
 base::as.package_version  
+base::unique.default
 base::unique.numeric_version
 base::package_version
 base::c.numeric_version
@@ -345,6 +374,18 @@ base::eapply
 
 ### io
 ```R
+base::file.access
+base::stdout
+base::print.default
+base::print.connection
+base::basename
+base::file.append
+base::socketConnection
+base::getConnection
+base::write
+base::close.connection
+base::sys.source #parse and evaluate expressions from a file
+base::clearPushBack #push text back to a connection
 base::readChar
 base::file
 base::file.create
@@ -538,6 +579,8 @@ base::Summary.difftime
 
 ### data.frames
 ```R
+base::unique #extract unique elements unique(c(1,2,2,3)) -> 1,2,3
+base::merge.default  #merge 2 data frames
 base::row.names.default
 base::duplicated.default
 base::print.by
@@ -621,6 +664,9 @@ base::is.unsorted
 
 ### list
 ```R
+base::pairlist
+base::attributes
+base::as.list.factor #S3 method "factor" -> "list" 
 base::[.simple.list
 base::is.list
 base::unlist
@@ -631,6 +677,19 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::droplevels
+base::determinant.matrix
+base::rowMeans
+base::matrix
+base::ncol
+base::lower.tri
+base::rbind
+base::cbind
+base::diag<-
+base::scale.default
+base::row.names<-
+base::aperm.table #array transposition
+base::norm #compute norm of an array
 base::isSymmetric
 base::sweep
 base::nrow
@@ -687,6 +746,7 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::asin
 base::log10
 base::log1p
 base::trunc
@@ -707,6 +767,9 @@ base::RNGversion
 
 ### dates
 ```R
+base::sinpi
+base::units
+base::month.abb
 base::months
 base::month.name #built in constants_
 base::split.Date
@@ -749,6 +812,14 @@ base::trunc.Date
 
 ### string
 ```R
+base::shQuote
+base::as.character
+base::endsWith
+base::format.hexmode
+base::Sys.getlocale
+base::unserialize
+base::serialize
+base::trimws
 base::validEnc
 base::encodeString
 base::prettyNum
@@ -796,6 +867,7 @@ base::.kappa_tri
 ### conditioning
 ```R
 base::as.character.condition
+base::simpleCondition
 ```
 
 ### logicals
@@ -806,6 +878,9 @@ base::as.logical.factor
 ### factors 
 ### levels
 ```R
+base::Math.factor
+base::cut.default
+base::is.na<-.factor
 base::ordered
 base::all.equal.factor
 base::levels
@@ -821,6 +896,7 @@ base::levels<-
 ### functions still needing to put in their categories (io, langauge, array, etc)
 
 ```R
+base::R.home
 base::exists
 base::substitute
 base::data.matrix
@@ -894,6 +970,7 @@ base::sink
 base::all.equal.character
 base::unsplit
 base::as.hexmode
+base::is.environment
 base::globalenv
 base::list.files
 base::loadingNamespaceInfo
@@ -1241,7 +1318,6 @@ base::print.summaryDefault
 base::toString.default
 base::pushBackLength
 base::extSoftVersion
-base::serialize
 base::is.complex
 base::loadNamespace
 base::all.equal.default
@@ -1358,157 +1434,3 @@ base::Sys.setlocale
 base::levels<-.factor
 base::range
 base::deparse
--->stop
-base::pairlist
-base::sinpi
-base::print.NativeRoutineList
-base::psigamma
-base::file.access
-base::is.environment
-base::Math.factor
-base::getRversion
-base::droplevels
-base::determinant.matrix
-base::stdout
-base::suspendInterrupts
-base::trace
-base::callCC
-base::rowMeans
-base::format.packageInfo
-base::print.default
-base::shQuote
-base::cut.default
-base::range.default
-base::structure
-base::mode
-base::attributes
-base::as.character
-base::simpleCondition
-base::endsWith
-base::print.connection
-base::&.octmode
-base::parent.env<-
-base::split.default
-base::asS3
-base::asS4
-base::with.default
-base::args
-base::break
-base::matrix
-base::basename
-base::lbeta
-base::asin
-base::summary.default
-base::file.append
-base::srcfile
-base::Sys.which
-base::ncol
-base::return
-base::atan
-base::socketConnection
-base::getConnection
-base::tryCatch
-base::attr
-base::tracemem
-base::format.hexmode
-base::beta
-base::next
-base::Sys.getlocale
-base::lower.tri
-base::rbind
-base::union
-base::write
-base::units
-base::cbind
-base::month.abb
-base::diag<-
-base::Sys.unsetenv
-base::dyn.unload
-base::scale.default
-base::invokeRestart
-base::is.na<-.factor
-base::bitwOr
-base::close.connection
-base::row.names<-
-base::trimws
-base::unserialize
-base::standardGeneric
-base::[.Dlist
-base::R.home
-base::unique.default
-base::sys.frame
-base::sys.source
-base::clearPushBack
-base::bindtextdomain
-base::lgamma
-base::aperm.table
-base::getLoadedDLLs
-base::format.libraryIQR
-base::unique
-base::merge.default
-base::ifelse
-base::is.atomic
-base::sys.parents
-base::body
-base::as.character.default
-base::rep.int
-base::norm
-base::as.list.factor
-base::retracemem
-base::local
-base::expression
-base::Reduce
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
