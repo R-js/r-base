@@ -40,11 +40,23 @@
 
 ### language
 ```R
+base::typeof
+base::seq
+base::try
+base::mget
+base::Sys.info
+base::xor
+base::%in%
+base::capabilities
+base::geterrmessage
+base::delayedAssign
+base::range
 base::getRversion
 base::structure
 base::mode
 base::&.octmode
 base::parent.env<-
+base::as.environment
 base::split #Divide into Groups and Reassemble
 base::asS3
 base::asS4
@@ -66,6 +78,7 @@ base::local #evaluate an "expression class"
 base::expression #creates Unevaluated Expressions, it has class "expression"
 base::Reduce #FP "reduce"
 base::is.expression
+base::deparse  # expression deparsing
 base::sys.parent
 base::call
 base::is.object
@@ -112,6 +125,7 @@ base::new.env
 base::while
 base::complex
 base::environmentIsLocked
+base::Sys.getenv
 base::Ops.factor
 base::as.complex
 base::all.equal.environment
@@ -229,6 +243,7 @@ base::utf8ToInt
 
 ### date and time classes POSIXt POSIXct POSIXlt 
 ```R
+base::julian
 base::quarters
 base::Sys.timezone
 base::Ops.POSIXt
@@ -374,6 +389,13 @@ base::eapply
 
 ### io
 ```R
+base::stderr
+base::flush
+base::unz
+base::url
+base::dirname
+base::oldClass<- #S-PLUS  legacy?
+base::print.simple.list
 base::file.access
 base::stdout
 base::print.default
@@ -677,6 +699,15 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::rep
+base::rev #reverse elements
+base::row
+base::rev.default
+base::as.matrix.noquote
+base::svd
+base::upper.tri
+base::isSymmetric.matrix
+base::dim<-
 base::droplevels
 base::determinant.matrix
 base::rowMeans
@@ -746,6 +777,11 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::sin
+base::acos
+base::tan
+base::sum
+base::mean
 base::asin
 base::log10
 base::log1p
@@ -812,6 +848,16 @@ base::trunc.Date
 
 ### string
 ```R
+base::raw
+base::paste0 #concat strings
+base::intToUtf8
+base::rle
+base::sub # pattern match and replacement
+base::!.octmode
+base::is.character
+base::intToBits
+base::validUTF8
+base::Sys.setlocale
 base::shQuote
 base::as.character
 base::endsWith
@@ -868,6 +914,7 @@ base::.kappa_tri
 ```R
 base::as.character.condition
 base::simpleCondition
+base::conditionMessage
 ```
 
 ### logicals
@@ -878,6 +925,8 @@ base::as.logical.factor
 ### factors 
 ### levels
 ```R
+base::is.factor
+base::levels<-.factor
 base::Math.factor
 base::cut.default
 base::is.na<-.factor
@@ -896,6 +945,7 @@ base::levels<-
 ### functions still needing to put in their categories (io, langauge, array, etc)
 
 ```R
+-->stop()
 base::R.home
 base::exists
 base::substitute
@@ -1083,6 +1133,7 @@ base::all.vars
 base::format.default
 base::choose
 base::as.expression.default
+base::within
 base::bitwAnd
 base::tabulate
 base::c.noquote
@@ -1376,61 +1427,40 @@ base::format.info
 base::|.hexmode
 base::Sys.setFileTime
 base::setequal
-base::raw
-base::typeof
-base::rep
-base::rev
-base::paste0
-base::rle
-base::conditionMessage
-base::row
-base::stderr
-base::seq
-base::flush
-base::sin
-base::intToUtf8
-base::acos
-base::within
-base::tan
-base::as.matrix.noquote
-base::libcurlVersion
-base::sub
-base::sum
-base::svd
-base::upper.tri
-base::isSymmetric.matrix
-base::is.factor
-base::mean
-base::try
-base::rev.default
-base::is.character
-base::Sys.getenv
-base::!.octmode
-base::unz
-base::url
-base::as.environment
-base::mget
-base::print.eigen
-base::invokeRestartInteractively
-base::getNamespaceExports
-base::dim<-
-base::icuGetCollate
-base::dirname
-base::Sys.info
-base::xor
-base::allowInterrupts
-base::%in%
-base::julian
-base::intToBits
-base::validUTF8
-base::capabilities
-base::oldClass<-
-base::print.simple.list
-base::namespaceImport
-base::geterrmessage
-base::delayedAssign
-base::print.DLLRegisteredRoutines
-base::Sys.setlocale
-base::levels<-.factor
-base::range
-base::deparse
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```

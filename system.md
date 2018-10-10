@@ -52,4 +52,10 @@ base::callCC
 base::trace
 base::suspendInterrupts
 base::print.NativeRoutineList
+base::print.DLLRegisteredRoutines
+base::allowInterrupts
+base::icuGetCollate
+base::getNamespaceExports
+base::invokeRestartInteractively
+base::libcurlVersion
 ```
