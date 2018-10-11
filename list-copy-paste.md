@@ -40,7 +40,34 @@
 
 ### language
 ```R
-
+base::<<-
+base::is.na<-.default
+base::R.version.string
+base::as.single.default
+base::@<-
+base::identical
+base::nargs
+base::is.R
+base::bitwNot
+base::is.primitive
+base::version
+base::print.warnings
+base::simpleWarning
+base::double
+base::print
+base::forceAndCall
+base::testPlatformEquivalence
+base::contributors
+base::unix.time
+base::print.Dlist # print description list
+base::Find
+base::all.equal.envRefClass
+base::bitwXor
+base::Map
+base::Mod
+base::objects
+base::search
+base::is.infinite
 base::getSrcLines
 base::dQuote
 base::bquote
@@ -123,6 +150,7 @@ base::bindtextdomain # translate text messages
 base::ifelse #if else construct  example: sqrt(ifelse(x >= 0, x, NA))  # no warning
 base::is.atomic #object is atomic or recursive
 base::body # manipulate the body of a function
+base::body<-
 base::rep.int
 base::local #evaluate an "expression class"
 base::expression #creates Unevaluated Expressions, it has class "expression"
@@ -230,6 +258,7 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 
 ### specials
 ```
+base::trigamma
 base::lbeta
 base::beta
 base::lgamma
@@ -444,6 +473,17 @@ base::eapply
 
 ### io
 ```R
+base::read.dcf
+base::showConnections
+base::print.function
+base::file.mtime
+base::setwd
+base::getwd
+base::as.expression
+base::summary.srcfile
+base::close.srcfilealias
+base::isIncomplete
+base::source
 base::readRenviron
 base::textConnection
 base::file.mode
@@ -525,6 +565,7 @@ base::browserText #browser related, not a "browser" here is a user-feedback-cons
 
 ### internal
 ```R
+base::sys.load.image
 base::getOption
 base::options
 base::.Options
@@ -575,6 +616,8 @@ base::.knownS3Generics
 base::.deparseOpts
 base::.row
 base::.standard_regexps
+base::regexpr
+base::regexec
 base::.__H__.rbind
 base::.signalSimpleWarning
 base::.External2
@@ -672,6 +715,8 @@ base::Summary.difftime
 
 ### data.frames
 ```R
+base::expand.grid
+base::merge
 base::unique #extract unique elements unique(c(1,2,2,3)) -> 1,2,3
 base::merge.default  #merge 2 data frames
 base::row.names.default
@@ -757,6 +802,7 @@ base::is.unsorted
 
 ### list
 ```R
+base::is.table
 base::as.list.default
 base::as.list.environment
 base::as.list.function
@@ -773,6 +819,18 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::margin.table
+base::duplicated.matrix
+base::append
+base::mat.or.vec
+base::tanpi
+base::prmatrix
+base::dimnames
+base::chol.default
+base::anyDuplicated.default
+base::rep.factor
+base::outer
+base::as.table
 base::xtfrm.Surv
 base::rowsum.default
 base::tcrossprod
@@ -868,6 +926,9 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::Arg
+base::set.seed
+base::jitter
 base::unclass # remove class attributes
 base::cummax
 base::cummin
@@ -960,6 +1021,20 @@ base::trunc.Date
 
 ### string
 ```R
+base::sprintf
+base::split<-
+base::abbreviate
+base::grepl
+base::&.hexmode
+base::character
+base::seq.int
+base::storage.mode<-
+base::gregexpr
+base::ngettext
+base::gettext
+base::rawToChar
+base::format.factor
+base::sQuote
 base::nchar
 base::strptime
 base::agrepl
@@ -1060,6 +1135,7 @@ base::isTRUE
 ### factors 
 ### levels
 ```R
+base::[.factor
 base::as.factor
 base::cut
 base::[[.factor
@@ -1161,6 +1237,7 @@ base::all.equal.character
 base::unsplit
 base::as.hexmode
 base::is.environment
+base::list2env
 base::globalenv
 base::list.files
 base::loadingNamespaceInfo
@@ -1287,104 +1364,101 @@ base::icuSetCollate
 base::Sys.localeconv
 base::conditionCall
 base::!.hexmode
--->stop()
-base::margin.table
-base::<<-
-base::sprintf
-base::duplicated.matrix
-base::read.dcf
-base::append
-base::mat.or.vec
-base::is.na<-.default
-base::split<-
-base::R.version.string
-base::tanpi
-base::namespaceExport
-base::prmatrix
-base::as.single.default
-base::expand.grid
-base::dimnames
-base::@<-
-base::identical
-base::chol.default
-base::gctorture
-base::missing
-base::abbreviate
-base::showConnections
-base::merge
-base::nargs
-base::is.R
-base::Sys.sleep
-base::reg.finalizer
-base::isdebugged
-base::anyDuplicated.default
-base::rep.factor
-base::zapsmall
-base::outer
-base::print.function
-base::isS4
-base::isBaseNamespace
-base::Arg
-base::file.mtime
-base::setwd
-base::bitwNot
-base::getwd
-base::list2env
-base::set.seed
-base::is.primitive
-base::grepl
-base::trigamma
-base::&.hexmode
-base::character
-base::returnValue
-base::version
-base::jitter
-base::isNamespaceLoaded
-base::print.warnings
-base::simpleWarning
-base::double
-base::as.expression
-base::summary.srcfile
-base::debugonce
-base::print
-base::[.listof
-base::forceAndCall
-base::close.srcfilealias
-base::testPlatformEquivalence
-base::seq.int
-base::storage.mode<-
-base::gregexpr
-base::namespaceImportClasses
-base::contributors
-base::unix.time
-base::ngettext
-base::print.Dlist
-base::Find
-base::all.equal.envRefClass
-base::gettext
-base::[.factor
-base::body<-
-base::rawToChar
-base::importIntoEnv
-base::isIncomplete
-base::bitwXor
-base::format.factor
-base::Map
-base::getTaskCallbackNames
-base::Mod
-base::sQuote
-base::regexec
-base::regexpr
-base::[.noquote
-base::sys.nframe
-base::as.table
-base::sys.load.image
-base::source
-base::objects
-base::is.table
-base::sys.status
-base::search
-base::is.infinite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
