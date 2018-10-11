@@ -40,6 +40,16 @@
 
 ### language
 ```R
+
+base::getSrcLines
+base::dQuote
+base::bquote
+base::builtins
+base::length<-
+base::format.summaryDefault
+base::all.equal.numeric
+base::registerS3method
+base::environmentName
 base::environment<-
 base::as.call
 base::with
@@ -434,6 +444,13 @@ base::eapply
 
 ### io
 ```R
+base::readRenviron
+base::textConnection
+base::file.mode
+base::file.info
+base::xzfile
+base::writeChar
+base::readline
 base::Sys.glob
 base::stdin
 base::readLines
@@ -740,6 +757,8 @@ base::is.unsorted
 
 ### list
 ```R
+base::as.list.default
+base::as.list.environment
 base::as.list.function
 base::pairlist
 base::attributes
@@ -754,6 +773,7 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::xtfrm.Surv
 base::rowsum.default
 base::tcrossprod
 base::crossprod
@@ -848,6 +868,13 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::unclass # remove class attributes
+base::cummax
+base::cummin
+base::asinh
+base::cumsum
+base::[<-
+base::format.pval
 base::atan2
 base::atanh
 base::which.min
@@ -933,6 +960,8 @@ base::trunc.Date
 
 ### string
 ```R
+base::nchar
+base::strptime
 base::agrepl
 base::substring<-
 base::substr<-
@@ -1014,6 +1043,7 @@ base::.kappa_tri
 
 ### conditioning
 ```R
+base::restartDescription
 base::as.character.condition
 base::simpleCondition
 base::conditionMessage
@@ -1355,46 +1385,7 @@ base::is.table
 base::sys.status
 base::search
 base::is.infinite
-base::rownames
-base::readRenviron
--->stop()
-base::textConnection
-base::getSrcLines
-base::unclass
-base::gc.time
-base::cummax
-base::gcinfo
-base::cummin
-base::addTaskCallback
-base::file.mode
-base::unlockBinding
-base::file.info
-base::xtfrm.Surv
-base::attachNamespace
-base::dQuote
-base::bquote
-base::builtins
-base::length<-
-base::format.summaryDefault
-base::xzfile
-base::nchar
-base::writeChar
-base::La_library
-base::strptime
-base::all.equal.numeric
-base::readline
-base::registerS3method
-base::as.list.default
-base::setNamespaceInfo
-base::getNamespaceInfo
-base::asinh
-base::sys.on.exit
-base::namespaceImportMethods
-base::cumsum
-base::environmentName
-base::as.list.environment
-base::restartDescription
-base::[<-
-base::autoload
-base::format.pval
+
+
+
 ```

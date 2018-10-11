@@ -73,4 +73,13 @@ base::Sys.getpid
 base::requireNamespace
 base::getExportedValue
 base::system2
+base::autoload
+base::namespaceImportMethods
+base::sys.on.exit
+base::setNamespaceInfo
+base::La_library # lapack library?
+base::attachNamespace
+base::addTaskCallback
+base::gcinfo
+base::gc.time
 ```
