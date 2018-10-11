@@ -1,5 +1,6 @@
 ### to work with R source file, not applicable
 ```R
+base::makeActiveBinding
 base::print.srcfile
 base::condition
 # The condition system
@@ -35,7 +36,7 @@ base::signalCondition
 base::require
 base::library.dynam
 base::unique.warnings
-base::rm remove identifier from environment
+base::rm #remove identifier from environment
 base::retracemem #marks an object if any function "copies" it
 base::sys.parents #access function call-stack
 base::sys.parent 
@@ -99,4 +100,26 @@ base::reg.finalizer
 base::missing
 base::gctorture
 base::namespaceExport
+base::parseNamespaceFile
+base:::::
+base::lockEnvironment
+base::repeat
+base::topenv
+base::debug
+base::proc.time
+base::path.package
+base::library
+base::chkDots
+base::dyn.load
+base::sys.calls
+base::match.call
+base::print.DLLInfo
+base::sys.function
+base::unloadNamespace
+base::stop
+base::Cstack_info
+base::print.proc_time
+base::is.loaded
+base::undebug
+base::$.DLLInfo
 ```

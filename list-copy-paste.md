@@ -40,6 +40,14 @@
 
 ### language
 ```R
+
+base::suppressMessages
+base::$<- # no idea what this is
+base::eval.parent
+base::UseMethod # S3 subsystem
+base::mem.limits # deprecated
+base::all.vars
+base::within
 base::<<-
 base::is.na<-.default
 base::R.version.string
@@ -258,6 +266,7 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 
 ### specials
 ```
+base::choose
 base::trigamma
 base::lbeta
 base::beta
@@ -473,6 +482,20 @@ base::eapply
 
 ### io
 ```R
+base::normalizePath
+base::writeLines
+base::saveRDS
+base::curlGetHeaders
+base::Sys.readlink
+base::dir.create
+base::seek.connection
+base::pushBack
+base::srcfilecopy
+base::write.dcf
+base::file.link
+base::isOpen
+base::system.file
+base::file.size
 base::read.dcf
 base::showConnections
 base::print.function
@@ -715,6 +738,7 @@ base::Summary.difftime
 
 ### data.frames
 ```R
+base::transform.default
 base::expand.grid
 base::merge
 base::unique #extract unique elements unique(c(1,2,2,3)) -> 1,2,3
@@ -802,6 +826,7 @@ base::is.unsorted
 
 ### list
 ```R
+base::as.list
 base::is.table
 base::as.list.default
 base::as.list.environment
@@ -819,6 +844,26 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::is.matrix
+base::colSums
+base::%*% # matrix multiplication
+base::%/% #matrix A/x, example  inverseA = diag(1:3)/matrix(runif(9),3)
+base::aperm
+base::xtfrm
+base::grouping
+base::as.matrix.default
+base::%o% # outer product
+base::%x% # kronecker (x,y)
+base::as.matrix
+base::split
+base::split<-
+base::diff.default
+base::is.vector
+base::iconvlist
+base::table
+base::xtfrm.default
+base::tabulate
+base::findInterval
 base::margin.table
 base::duplicated.matrix
 base::append
@@ -922,10 +967,16 @@ base::aperm #array transposition_
 base::aperm.default
 base::kronecker #kronecker product on arrays_
 base::as.matrix.data.frame
+base::rowsum
 ```
 
 ### math
 ```R
+base::tanh
+base::sqrt
+base::sample.int
+base::signif
+base::expm1
 base::Arg
 base::set.seed
 base::jitter
@@ -976,6 +1027,8 @@ base::RNGversion
 
 ### dates
 ```R
+base::OlsonNames
+base::check_tzones
 base::sinpi
 base::units
 base::month.abb
@@ -1021,8 +1074,22 @@ base::trunc.Date
 
 ### string
 ```R
+base::grep
+base::strsplit
+base::gsub
+base::print.rle
+base::format.octmode
+base::enc2utf8
+base::char.expand
+base::enc2native
+base::grepRaw
+base::format.default
+base::c.noquote
+base::all.equal.raw
+base::Sys.localeconv
+base::!.hexmode
 base::sprintf
-base::split<-
+
 base::abbreviate
 base::grepl
 base::&.hexmode
@@ -1118,6 +1185,9 @@ base::.kappa_tri
 
 ### conditioning
 ```R
+base::restartFormals
+base::conditionCall.condition
+base::conditionCall
 base::restartDescription
 base::as.character.condition
 base::simpleCondition
@@ -1130,11 +1200,16 @@ base::withCallingHandlers
 ```R
 base::as.logical.factor
 base::isTRUE
+base::is.logical
 ```
 
 ### factors 
 ### levels
 ```R
+base::addNA
+base::[<-.factor
+base::[[<-.factor
+base::as.character.factor
 base::[.factor
 base::as.factor
 base::cut
@@ -1263,107 +1338,107 @@ base::as.table.default
 base::getDLLRegisteredRoutines.character
 base::gctorture2
 base::Conj
--->stop()
-base::normalizePath
-base::addNA
-base::is.matrix
-base::[<-.factor
-base::writeLines
-base::colSums
-base::saveRDS
-base::suppressMessages
-base::[[<-.factor
-base::$.DLLInfo
-base::%*%
-base::undebug
-base::$<-
-base::%/%
-base::tanh
-base::is.loaded
-base::curlGetHeaders
-base::sqrt
-base::sample.int
-base::grep
-base::is.logical
-base::print.proc_time
-base::Sys.readlink
-base::strsplit
-base::Cstack_info
-base::dir.create
-base::aperm
-base::xtfrm
-base::gsub
-base::stop
-base::unloadNamespace
-base::grouping
-base::seek.connection
-base::as.matrix.default
-base::%o%
-base::eval.parent
-base::%x%
-base::pushBack
-base::transform.default
-base::srcfilecopy
-base::restartFormals
-base::print.rle
-base::format.octmode
-base::conditionCall.condition
-base::as.matrix
-base::enc2utf8
-base::sys.function
-base::print.DLLInfo
-base::UseMethod
-base::write.dcf
-base::split
-base::match.call
-base::sys.calls
-base::char.expand
-base::signif
-base::file.link
-base::diff.default
-base::dyn.load
-base::expm1
-base::is.vector
-base::iconvlist
-base::chkDots
-base::library
-base::path.package
-base::proc.time
-base::table
-base::enc2native
-base::debug
-base::OlsonNames
-base::isOpen
-base::grepRaw
-base::rowsum
-base::as.list
-base::topenv
-base::system.file
-base::repeat
-base::as.character.factor
-base::print.table
-base::lockEnvironment
-base::xtfrm.default
-base::mem.limits
-base::all.vars
-base::format.default
-base::choose
-base::as.expression.default
-base::within
-base::bitwAnd
-base::tabulate
-base::c.noquote
-base::check_tzones
-base::file.size
-base::makeActiveBinding
-base:::::
-base::findInterval
-base::all.equal.raw
-base::parseNamespaceFile
-base::icuSetCollate
-base::Sys.localeconv
-base::conditionCall
-base::!.hexmode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
