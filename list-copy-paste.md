@@ -40,6 +40,33 @@
 
 ### language
 ```R
+base::environment<-
+base::as.call
+base::with
+base::emptyenv
+base::[.AsIs
+base::comment<-
+base::seq_len
+base::numeric
+base::formatDL #format descriptionlists
+base::mostattributes<-
+base::data.class
+base::memCompress
+base::make.names #example make.names(c("a and b", "a-and-b"), unique = TRUE)
+base::as.null
+base::storage.mode
+base::is.nan
+base::class
+base::length<-.factor
+base::pretty.default
+base::open.srcfilealias
+base::identity
+base::print.summaryDefault
+base::extSoftVersion
+base::open.srcfile
+base::all.equal.default
+base::summary
+base::packageStartupMessage
 base::sys.save.image
 base::invisible
 base::open.srcfile
@@ -69,6 +96,7 @@ base::mode
 base::&.octmode
 base::parent.env<-
 base::as.environment
+base::environment
 base::split #Divide into Groups and Reassemble
 base::asS3
 base::asS4
@@ -126,6 +154,8 @@ base::packageHasNamespace
 base::is.na<-
 base::is.name #alias for is.symbol
 base::as.name #alias for as.symbol
+base::as.symbol
+base::is.symbol
 base::I
 base::registerS3methods
 base::c
@@ -256,6 +286,8 @@ base::utf8ToInt
 
 ### date and time classes POSIXt POSIXct POSIXlt 
 ```R
+base::weekdays
+base::Sys.time
 base::julian
 base::quarters
 base::Sys.timezone
@@ -402,6 +434,11 @@ base::eapply
 
 ### io
 ```R
+base::Sys.glob
+base::stdin
+base::readLines
+base::dir
+base::pushBackLength
 base::lazyLoadDBexec
 base::close
 base::save.image
@@ -703,6 +740,7 @@ base::is.unsorted
 
 ### list
 ```R
+base::as.list.function
 base::pairlist
 base::attributes
 base::as.list.factor #S3 method "factor" -> "list" 
@@ -716,6 +754,20 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::rowsum.default
+base::tcrossprod
+base::crossprod
+base::all
+base::as.numeric
+base::any
+base::col
+base::det
+base::dim
+base::anyDuplicated.matrix
+base::rowSums
+base::summary.table
+base::list
+base::rownames<-
 base::max.col
 base::unique.matrix
 base::rep
@@ -796,6 +848,16 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::atan2
+base::atanh
+base::which.min
+base::which.max
+base::abs
+base::cos
+base::exp
+base::is.complex
+base::RNGkind
+base::pmax.int
 base::max
 base::floor
 base::min
@@ -871,6 +933,19 @@ base::trunc.Date
 
 ### string
 ```R
+base::agrepl
+base::substring<-
+base::substr<-
+base::agrep
+base::Encoding<-
+base::charToRaw
+base::cat
+base::is.raw
+base::charmatch
+base::rawShift
+base::toString.default
+base::strtrim
+base::print.summary.warnings
 base::log
 base::rawToBits
 base::gettextf
@@ -942,16 +1017,23 @@ base::.kappa_tri
 base::as.character.condition
 base::simpleCondition
 base::conditionMessage
+base::as.character.error
+base::withCallingHandlers
 ```
 
 ### logicals
 ```R
 base::as.logical.factor
+base::isTRUE
 ```
 
 ### factors 
 ### levels
 ```R
+base::as.factor
+base::cut
+base::[[.factor
+base::Summary.factor
 base::droplevels.factor
 base::is.factor
 base::levels<-.factor
@@ -968,6 +1050,7 @@ base::nlevels
 base::Summary.ordered
 base::as.ordered
 base::levels<-
+base::summary.factor
 ```
 
 ### functions still needing to put in their categories (io, langauge, array, etc)
@@ -1011,7 +1094,6 @@ base::save
 base::function
 base::is.single
 base::default.stringsAsFactors
--->stop()
 base::pmatch
 base::withRestarts
 base::scan
@@ -1074,6 +1156,7 @@ base::as.table.default
 base::getDLLRegisteredRoutines.character
 base::gctorture2
 base::Conj
+-->stop()
 base::normalizePath
 base::addNA
 base::is.matrix
@@ -1100,7 +1183,6 @@ base::Sys.readlink
 base::strsplit
 base::Cstack_info
 base::dir.create
-
 base::aperm
 base::xtfrm
 base::gsub
@@ -1113,7 +1195,6 @@ base::%o%
 base::eval.parent
 base::%x%
 base::pushBack
--->stop()
 base::transform.default
 base::srcfilecopy
 base::restartFormals
@@ -1176,13 +1257,13 @@ base::icuSetCollate
 base::Sys.localeconv
 base::conditionCall
 base::!.hexmode
+-->stop()
 base::margin.table
 base::<<-
 base::sprintf
 base::duplicated.matrix
 base::read.dcf
 base::append
-
 base::mat.or.vec
 base::is.na<-.default
 base::split<-
@@ -1215,7 +1296,6 @@ base::isS4
 base::isBaseNamespace
 base::Arg
 base::file.mtime
--->stop
 base::setwd
 base::bitwNot
 base::getwd
@@ -1277,6 +1357,7 @@ base::search
 base::is.infinite
 base::rownames
 base::readRenviron
+-->stop()
 base::textConnection
 base::getSrcLines
 base::unclass
@@ -1316,179 +1397,4 @@ base::restartDescription
 base::[<-
 base::autoload
 base::format.pval
---> stop
-base::environment<-
-base::as.call
-base::with
-base::emptyenv
-base::[.AsIs
-base::as.list.function
-base::agrepl
-base::comment<-
-base::seq_len
-base::rowsum.default
-base::numeric
-base::withCallingHandlers
-base::open.srcfilecopy
-base::weekdays
-base::formatDL
-base::system2
-base::mostattributes<-
-base::as.factor
-base::data.class
-base::is.symbol
-base::substring<-
-base::memCompress
-base::simpleMessage
-base::make.names
-base::as.null
-base::storage.mode
-base::substr<-
-base::getExportedValue
-base::atan2
-base::requireNamespace
-base::atanh
-base::is.nan
-base::class
-base::length<-.factor
-base::agrep
-base::which.min
-base::Sys.glob
-base::Sys.getpid
-base::which.max
-base::pretty.default
-base::on.exit
-base::tcrossprod
-base::crossprod
-base::abs
-base::stdin
-base::all
-base::as.numeric
-base::any
-base::Encoding<-
-base::isTRUE
-base::charToRaw
-base::Sys.time
-base::environment
-base::cat
-base::is.raw
-base::readLines
-base::charmatch
-base::col
-base::cos
-base::det
-base::cut
-base::dim
-base::dir
-base::as.symbol
-base::[[.factor
-base::summary.factor
-base::anyDuplicated.matrix
-base::getDLLRegisteredRoutines.DLLInfo
-base::exp
-base::for
-base::rowSums
-base::rawShift
-base::get
-base::open.srcfilealias
-base::identity
-base::Summary.factor
-base::print.summaryDefault
-base::toString.default
-base::pushBackLength
-base::extSoftVersion
-base::is.complex
-base::loadNamespace
-base::all.equal.default
-base::print.condition
-base::RNGkind
-base::summary.table
-base::list
-base::as.character.error
-base::strtrim
-base::licence
-base::summary
-base::packageStartupMessage
-base::print.summary.warnings
-base::pmax.int
-base::rownames<-
-base::license
---> stop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```

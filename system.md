@@ -66,5 +66,11 @@ base::taskCallbackManager
 base::sys.frames
 base::namespaceImportFrom
 base::searchpaths
-base::open.srcfile
+base::loadNamespace
+base::getDLLRegisteredRoutines.DLLInfo
+base::on.exit
+base::Sys.getpid
+base::requireNamespace
+base::getExportedValue
+base::system2
 ```
