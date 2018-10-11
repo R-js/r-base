@@ -40,7 +40,18 @@
 
 ### language
 ```R
-
+base::getElement #Extract or Replace Parts of an Object
+base::is.single #Error in is.single(1e-06) : type "single" unimplemented in R
+base::is.null
+base::browserCondition
+base::get0
+base::isFALSE
+base::all.equal.character
+base::logical
+base::class<-
+base::as.null.default # coerce object to NULL
+base::summary.warnings
+base::intersect
 base::suppressMessages
 base::$<- # no idea what this is
 base::eval.parent
@@ -85,6 +96,7 @@ base::format.summaryDefault
 base::all.equal.numeric
 base::registerS3method
 base::environmentName
+base::parent.env
 base::environment<-
 base::as.call
 base::with
@@ -226,6 +238,7 @@ base::all.names #get tokens(expr) from an expression_
 base::enquote #quote expressions_
 base::|.octmode #octal mode?_
 base::warning #warning message_
+base::suppressWarnings
 base::match.fun #extract function by name_
 base::format.AsIs #note:"AsIs" is a class , format an R object , pretty print_
 base::is.integer
@@ -266,6 +279,7 @@ Levels: 1.1 1.2 1.3 2.4 2.5
 
 ### specials
 ```
+base::lchoose
 base::choose
 base::trigamma
 base::lbeta
@@ -334,6 +348,7 @@ base::utf8ToInt
 
 ### date and time classes POSIXt POSIXct POSIXlt 
 ```R
+
 base::weekdays
 base::Sys.time
 base::julian
@@ -453,6 +468,7 @@ base::qr.qy
 base::qr.fitted
 base::qr.qty
 base::qr.resid
+base::as.qr
 base::qr.solve #same as solve(qr)_
 base::qr
 # Examples:
@@ -482,6 +498,21 @@ base::eapply
 
 ### io
 ```R
+
+base::textConnectionValue
+base::save
+base::scan
+base::sink.number
+base::dir.exists
+base::seek
+base::readRDS
+base::rawConnectionValue
+base::Sys.chmod
+base::sink
+base::list.files
+base::file.show
+base::bzfile
+base::summary.srcref #source files and codes
 base::normalizePath
 base::writeLines
 base::saveRDS
@@ -738,6 +769,8 @@ base::Summary.difftime
 
 ### data.frames
 ```R
+base::transform
+base::by.default
 base::transform.default
 base::expand.grid
 base::merge
@@ -826,6 +859,8 @@ base::is.unsorted
 
 ### list
 ```R
+base::is.pairlist
+base::as.pairlist
 base::as.list
 base::is.table
 base::as.list.default
@@ -844,6 +879,18 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::determinant
+base::unname
+base::row.names
+base::lengths
+base::dimnames<-
+base::pretty
+base::anyNA
+base::as.vector
+base::split<-.default
+base::length
+base::unsplit
+base::as.table.default
 base::is.matrix
 base::colSums
 base::%*% # matrix multiplication
@@ -972,6 +1019,11 @@ base::rowsum
 
 ### math
 ```R
+base::data.matrix
+base::sign
+base::sinh
+base::acosh
+base::Conj
 base::tanh
 base::sqrt
 base::sample.int
@@ -1027,6 +1079,8 @@ base::RNGversion
 
 ### dates
 ```R
+base::strftime
+base::units<-
 base::OlsonNames
 base::check_tzones
 base::sinpi
@@ -1074,6 +1128,25 @@ base::trunc.Date
 
 ### string
 ```R
+base::R.home
+base::exists
+base::substitute
+base::print.noquote
+base::as.character.octmode
+base::browserSetDebug
+base::print.listof
+base::[.octmode
+base::print.factor
+base::default.stringsAsFactors
+base::pmatch
+base::casefold
+base::chartr
+base::as.octmode
+base::formatC
+base::as.hexmode
+base::packageEvent
+base::make.unique
+base::noquote
 base::grep
 base::strsplit
 base::gsub
@@ -1089,7 +1162,6 @@ base::all.equal.raw
 base::Sys.localeconv
 base::!.hexmode
 base::sprintf
-
 base::abbreviate
 base::grepl
 base::&.hexmode
@@ -1206,6 +1278,7 @@ base::is.logical
 ### factors 
 ### levels
 ```R
+base::Ops.ordered
 base::addNA
 base::[<-.factor
 base::[[<-.factor
@@ -1219,6 +1292,7 @@ base::droplevels.factor
 base::is.factor
 base::levels<-.factor
 base::Math.factor
+base::all.equal.formula
 base::cut.default
 base::is.na<-.factor
 base::ordered
@@ -1232,309 +1306,4 @@ base::Summary.ordered
 base::as.ordered
 base::levels<-
 base::summary.factor
-```
-
-### functions still needing to put in their categories (io, langauge, array, etc)
-
-```R
--->stop()
-base::R.home
-base::exists
-base::substitute
-base::data.matrix
-base::all.equal.formula
-base::determinant
-base::print.noquote
-base::by.default
-base::Ops.ordered
-base::getNamespace
-base::conditionMessage.condition
-base::as.character.octmode
-base::browserSetDebug
-base::parent.env
-base::print.listof
-base::interactive
-base::unname
-base::remove
-base::sample
-base::getNamespaceVersion
-base::removeTaskCallback
-base::scale
-base::textConnectionValue
-base::transform
-base::lchoose
-base::is.call
-base::row.names
-base::[.octmode
-base::print.factor
-base::switch
-base::getElement
-base::lengths
-base::dimnames<-
-base::save
-base::function
-base::is.single
-base::default.stringsAsFactors
-base::pmatch
-base::withRestarts
-base::scan
-base::is.null
-base::sink.number
-base::pretty
-base::library.dynam.unload
-base::browserCondition
-base::dir.exists
-base::print.srcref
-base::casefold
-base::anyNA
-base::suppressWarnings
-base::seek
-base::is.language
-base::get0
-base::as.vector
-base::strftime
-base::readRDS
-base::split<-.default
-base::is.pairlist
-base::chartr
-base::isFALSE
-base::as.pairlist
-base::as.octmode
-base::length
-base::formals
-base::rawConnectionValue
-base::Sys.chmod
-base::formatC
-base::sign
-base::sinh
-base::sink
-base::all.equal.character
-base::unsplit
-base::as.hexmode
-base::is.environment
-base::list2env
-base::globalenv
-base::list.files
-base::loadingNamespaceInfo
-base::packageEvent
-base::make.unique
-base::logical
-base::as.vector.factor
-base::noquote
-base::as.qr
-base::class<-
-base::suppressPackageStartupMessages
-base::as.null.default
-base::summary.warnings
-base::file.show
-base::bindingIsLocked
-base::acosh
-base::bzfile
-base::intersect
-base::summary.srcref
-base::units<-
-base::withAutoprint
-base::as.table.default
-base::getDLLRegisteredRoutines.character
-base::gctorture2
-base::Conj
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```

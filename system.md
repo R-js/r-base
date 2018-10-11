@@ -3,6 +3,7 @@
 base::makeActiveBinding
 base::print.srcfile
 base::condition
+base::conditionMessage.condition
 # The condition system
 #
 # tryCatch(expr, ..., finally)
@@ -103,6 +104,9 @@ base::namespaceExport
 base::parseNamespaceFile
 base:::::
 base::lockEnvironment
+base::globalenv
+base::list2env
+base::is.environment
 base::repeat
 base::topenv
 base::debug
@@ -122,4 +126,19 @@ base::print.proc_time
 base::is.loaded
 base::undebug
 base::$.DLLInfo
+base::gctorture2
+base::getDLLRegisteredRoutines.character
+base::withAutoprint ## unknown
+base::bindingIsLocked
+base::suppressPackageStartupMessages #diagnostic
+base::loadingNamespaceInfo
+base::formals
+base::is.language
+base::print.srcref
+base::library.dynam.unload
+base::withRestarts
+base::is.call
+base::getNamespaceVersion
+base::remove # environment
+base::getNamespace
 ```
