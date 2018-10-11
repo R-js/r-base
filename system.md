@@ -58,4 +58,13 @@ base::icuGetCollate
 base::getNamespaceExports
 base::invokeRestartInteractively
 base::libcurlVersion
+base::system
+base::print.DLLInfoList
+base::Sys.setenv
+base::untrace
+base::taskCallbackManager
+base::sys.frames
+base::namespaceImportFrom
+base::searchpaths
+base::open.srcfile
 ```

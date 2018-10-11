@@ -40,6 +40,18 @@
 
 ### language
 ```R
+base::sys.save.image
+base::invisible
+base::open.srcfile
+base::Recall
+base::load
+base::R.version # S compatibility
+base::R.Version
+base::within.list
+base::inherits
+base::comment
+base::|.hexmode
+base::setequal
 base::typeof
 base::seq
 base::try
@@ -77,6 +89,7 @@ base::rep.int
 base::local #evaluate an "expression class"
 base::expression #creates Unevaluated Expressions, it has class "expression"
 base::Reduce #FP "reduce"
+base::Negate
 base::is.expression
 base::deparse  # expression deparsing
 base::sys.parent
@@ -389,6 +402,10 @@ base::eapply
 
 ### io
 ```R
+base::lazyLoadDBexec
+base::close
+base::save.image
+base::Sys.setFileTime
 base::stderr
 base::flush
 base::unz
@@ -699,6 +716,8 @@ base::replicate #replicate is a wrapper for the common use of sapply_
 
 ### array (vector, matrix, array, table)
 ```R
+base::max.col
+base::unique.matrix
 base::rep
 base::rev #reverse elements
 base::row
@@ -777,6 +796,10 @@ base::as.matrix.data.frame
 
 ### math
 ```R
+base::max
+base::floor
+base::min
+base::log2
 base::sin
 base::acos
 base::tan
@@ -848,6 +871,10 @@ base::trunc.Date
 
 ### string
 ```R
+base::log
+base::rawToBits
+base::gettextf
+base::format.info
 base::raw
 base::paste0 #concat strings
 base::intToUtf8
@@ -925,6 +952,7 @@ base::as.logical.factor
 ### factors 
 ### levels
 ```R
+base::droplevels.factor
 base::is.factor
 base::levels<-.factor
 base::Math.factor
@@ -1386,47 +1414,47 @@ base::pmax.int
 base::rownames<-
 base::license
 --> stop
-base::sys.save.image
-base::lazyLoadDBexec
-base::max.col
-base::invisible
-base::open.srcfile
-base::searchpaths
-base::namespaceImportFrom
-base::sys.frames
-base::Recall
-base::log
-base::rawToBits
-base::max
-base::floor
-base::close
-base::min
-base::assign
-base::taskCallbackManager
-base::gettextf
-base::setHook
-base::load
-base::Negate
-base::unique.matrix
-base::log2
-base::untrace
-base::logb
-base::droplevels.factor
-base::R.version
-base::R.Version
-base::within.list
-base::inherits
-base::Sys.setenv
-base::comment
-base::print.DLLInfoList
-base::vector
-base::system
-base::save.image
-base::row.names<-.default
-base::format.info
-base::|.hexmode
-base::Sys.setFileTime
-base::setequal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
