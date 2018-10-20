@@ -2,8 +2,11 @@
 
 import { checks } from './checks';
 import * as debug from 'debug';
+import { asSymbol, extractSymbolName } from './helpers';
+import { isArray } from 'util';
 
 const printers3router = debug('s3router');
+const logEnhance = debug('Renhance');
 
 export const $matrix = Symbol.for('matrix');
 export const $arr = Symbol.for('array');
@@ -37,7 +40,7 @@ export const $Date = Symbol.for('Date');
 export const $dbl = Symbol.for('double')
 export const $lan = Symbol.for('language')
 export const $s3 = Symbol.for('s3System')
-export const $ah = Symbol.for('attributeHidden');
+export const $ch = Symbol.for('classHidden');
 export const $attr = Symbol.for('attributes')
 export const $default = Symbol.for('S3-default')
 export const $class = Symbol.for('s3class');
@@ -51,81 +54,171 @@ export const hierarchy = {
   [$POSIXlt]: $POSIXt
 }
 
-function s3class(obj: any): symbol[] {
-  if (Object.getOwnPropertyDescriptor(obj, $attr)){
-     return obj[$attr][$class];
-  }
-  if (Object.getOwnPropertyDescriptor(obj, $ah)){
-     return obj[$ah][$class];
-  }
-  return []
+export function isR(obj): boolean {
+  // was the JS object R-enhanced?
+  // its on the object but "has" returns false
+  return obj && !(obj[$attr] == undefined) && !($attr in obj)
 }
 
-function s3className(s3c: symbol): string {
-  const match = s3c.toString().match(/^Symbol\(([^()]+)\)$/);
-  if (match === null) throw new Error(`argument s3c is not a symbol: ${String(s3c)}`)
-  return match[1];  
-}
-
-function s3Router(obj: any, ...rest: any[]): any {
-  const s3Classes = s3class(obj);
-  if (!s3Classes.length){
-     throw new Error(`argument object is not an s3 class ${String(obj)}`);
-  }
-  for (const s3Class of s3Classes) {
-    if (this[s3Class]) {
-      return this[s3Class](obj);
-    }
-  }
-  const allClassNames = s3Classes.map(s3className).join(',');
-  printers3router(`No specific handler found for: ${allClassNames}`)
-  
-  // try to route to default
-  if (this[$default]){
-     return this[$default](obj, ...rest);
-  }
-  throw new Error(`No default defined for function: [${this.name}] for s3 classes: ${allClassNames}`);
-}
-
-export function UseMethod(methodName: string) {
-  if (typeof methodName !== 'string') {
-    throw new Error(`methodname not a string`)
-  }
-  if (!methodName.trim()) {
-    throw new Error(`methodname cannot be empty string`)
-  }
-  checks.validateIdentifier({ name: methodName }); // will throw if not
-  // create the function
-  const fn = Function(`
-      const fn = function ${methodName}(...rest) { 
-         if (this instanceof ${methodName}){ 
-           throw 'dont call function ${methodName} with "new"'; 
-         }
-         return ${methodName}[Symbol.for("s3System")](...rest);
-      };
-      this.${methodName}=fn;
-      return fn;
-      `)();
-  Object.defineProperties(fn, {
-    [Symbol.toStringTag]: {
-      value: `S3 ${methodName}`,
-      writable: false,
-      enumerable: false,
-      configurable: false
+export function Renhance(obj) {
+  /* attribute virtual handler is here */
+  const dict = new Map()
+  const attributes = new Proxy({}, {
+    get(o, propName: PropertyKey) {
+      const key = asSymbol(propName);
+      const found = dict.get(key);
+      return found || [];
     },
-    [$s3]: {
-      writable: false,
-      enumerable: false,
-      configurable: false,
-      value: (...rest: any[]) => `s3 router called`
+    set(o, propName: PropertyKey, propValue: Function | string, originalObj) {
+      const key = asSymbol(propName);
+      if (checks.isDefined(propValue)) {
+        if (isArray(propValue)) {
+          dict.set(key, propValue);
+        }
+        else {
+          dict.set(key, [propValue]);
+        }
+        return true;
+      }
+      logEnhance('will delete:'+String(propName))
+      dict.delete(key);
+      return true;
     },
-    toString: {
-      writable: false,
-      enumerable: false,
-      configurable: false,
-      value: () => `s3 method ${methodName}`
+    getPrototypeOf(o) {
+      return null;
+    },
+    setPrototypeOf(o, prototype) {
+      return false;
+    },
+    isExtensible(o) {
+      return false;
+    },
+    preventExtensions(o) {
+      return false; // didnt succeed ot make unextendable
+    },
+    getOwnPropertyDescriptor(o, prop) {
+      return undefined;
+    },
+    defineProperty(o, prop, descr) {
+      return false;
+    },
+    has(o, propName: PropertyKey) {
+      const key = asSymbol(propName);
+      const found = dict.get(key);
+      return !!found;
+    },
+    deleteProperty(o, propName: PropertyKey) {
+      const key = asSymbol(propName);
+      return dict.delete(key);
+    },
+    ownKeys(o) {
+      return Array.from(dict.keys());
+    },
+    apply(o, thisArg, argumentList) {
+      throw new TypeError('not a function');
+    },
+    construct(o, argumentList, newTarget) {
+      throw new TypeError('this is not a class function');
     }
   });
-  return fn;
+
+  return new Proxy(obj, {
+    get(o, propName: PropertyKey) {
+      const symbol = asSymbol(propName);
+      if (symbol === $attr) {
+        return attributes;
+      }
+      return o[propName];
+    },
+    set(o, propName: PropertyKey, value, receiver) {
+      const symbol = asSymbol(propName);
+      if (symbol === $attr) {
+        return true;
+      }
+      o[propName] = value;
+      return true;
+    },
+    has(o, propName: PropertyKey) {
+      const key = asSymbol(propName);
+      if (key === $attr) {
+        return false
+      }
+      return propName in o;
+    },
+  });
+}
+
+export const UseMethod = (methodName: string) => {
+  checks.assertNonEmptyString(methodName)
+  checks.assertValidIdentifier(methodName);
+  const fns = new Map()
+
+  var fnStub = Function(`
+    const fn = function ${methodName}() { /* S3 generic function */};
+    return fn;
+  `)();
+
+  const s3MethodRouter = {
+    //traps
+    get(o, propName: PropertyKey) {
+      switch(propName){
+        case 'toString':
+          return  o[propName].bind(o);
+        case Symbol.toPrimitive:
+          return o[propName];
+        case 'valueOf':
+          return o[propName] //o[propName];
+        default:
+          break;      
+      }
+      const symbol = asSymbol(propName);
+      let fn = fns.get(symbol);
+      if (fn === undefined) {
+        fn = fns.get($default);
+        if (fn === undefined) {
+          throw new TypeError(`class ${String(propName)} has no handler`)
+        }
+      }
+      return fn;
+    },
+    //
+    set(o, propName: PropertyKey, propValue: Function | string, originalObj) {
+      const symbol = asSymbol(propName);
+      if (propValue === null || propValue === undefined || propValue === '') {
+        fns.delete(symbol)
+        return true
+      }
+      fns.set(symbol, propValue)
+      return true;
+    },
+    // actual routing is here
+    apply(o, thisArg, argumentList) {
+       const obj = argumentList[0];
+       if (!isR(obj)){
+          throw new TypeError(`first argument is not an R object`)
+       }
+      const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
+      if (!s3Classes.length) {
+        throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
+      }
+      for (const s3Class of s3Classes) {
+        const method = fns.get(s3Class)
+        if (method) {
+          return method.apply(obj, argumentList.slice())
+        }
+      }
+      
+      // try default
+      const _default = fns.get($default);
+      if (!_default){
+          const allClassNames = s3Classes.map(extractSymbolName).join(',');
+          const errMsg = `No default defined for function: [${o.name}] for s3 classes: ${allClassNames}`
+          printers3router(errMsg)
+          throw new Error(errMsg);
+      }
+      _default.apply(obj, argumentList.slice());
+    }   
+  } // router end
+  return new Proxy(fnStub, s3MethodRouter);
 }
 
