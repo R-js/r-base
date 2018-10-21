@@ -46,6 +46,7 @@ export const $attr = Symbol.for('attributes')
 export const $default = Symbol.for('S3-default')
 export const $class = Symbol.for('s3class');
 export const blessed = [$list, $matrix, $arr];
+export const $levels = Symbol.for('levels');
 
 //from specific -> general
 export const hierarchy = {
@@ -252,3 +253,14 @@ export function getClass(obj) {
     return obj[$attr][$class] || obj[$attr][$ch]
   }
 }
+
+//TODO:
+// implement names and lables
+
+export const names = UseMethod('names');
+export const labels = UseMethod('labels');
+export const Rclass = UseMethod('Rclass');
+export const attributes = UseMethod('attributes')
+
+
+

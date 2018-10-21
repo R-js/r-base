@@ -1,4 +1,6 @@
 import { Renhance, $class, $attr, UseMethod, $matrix, $list, $vector, $default } from './src/s3';
+import { factor } from './src/factor'
+//import { FactorType } from './src/types'
 
 const matrix = Renhance({});
 const list  = Renhance({});
@@ -22,4 +24,8 @@ const r3 = fn(vector);
 
 const allattribs = Object.getOwnPropertySymbols(matrix[$attr])
 const name = ''+fn;
-console.log(r1, '\n', r2, '\n', r3, '\n', allattribs, '\n', name)
+console.log(r1, '\n', r2, '\n', r3, '\n', allattribs, '\n', name);
+
+const f1 = factor(true, false, true, false, false);
+
+console.log(f1[2]);
