@@ -1,12 +1,12 @@
 'use strict';
 
 import { assertNonEmptyString, assertValidIdentifier, isDefined } from './checks';
-import * as debug from 'debug';
+import { getLogger } from './logger';
 import { asSymbol, extractSymbolName } from './helpers';
 import { isArray } from 'util';
 
-const printers3router = debug('s3router');
-const logEnhance = debug('Renhance');
+const s3logger = getLogger('s3router');
+const elogger = getLogger('Renhance');
 
 export const $matrix = Symbol.for('matrix');
 export const $arr = Symbol.for('array');
@@ -95,7 +95,7 @@ export function Renhance(obj) {
         }
         return true;
       }
-      logEnhance('will delete:' + String(propName))
+      elogger.warning('will delete:' + String(propName))
       dict.delete(key);
       return true;
     },
@@ -174,7 +174,16 @@ export const UseMethod = (methodName: string) => {
   `)();
 
   const s3MethodRouter = {
-    //traps
+    //hidden
+    _processNonRArguments(o, thisArg, argumentList) {
+      const _default = fns.get($default);
+      if (!_default) {
+         const errMsg = `default defined for function: [${o.name}]`
+         s3logger.errorAndThrow(Error, errMsg)
+      }
+      return _default.apply(thisArg, argumentList.slice());
+    },
+     //traps
     get(o, propName: PropertyKey) {
       switch (propName) {
         case 'toString':
@@ -209,27 +218,29 @@ export const UseMethod = (methodName: string) => {
     // actual routing is here
     apply(o, thisArg, argumentList) {
       const obj = argumentList[0];
-      if (isR(obj)) {
-        const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
-        if (!s3Classes.length) {
-          throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
-        }
-        for (const s3Class of s3Classes) {
-          const method = fns.get(s3Class)
-          if (method) {
-            return method.apply(obj, argumentList.slice())
-          }
+      if (!isR(obj)) {
+        return this._processNonRArguments(o, thisArg, argumentList);
+      }
+      const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
+      if (!s3Classes.length) {
+        throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
+      }
+      for (const s3Class of s3Classes) {
+        const method = fns.get(s3Class)
+        if (method) {
+          return method.apply(obj, argumentList.slice())
         }
       }
       // try default
       const _default = fns.get($default);
       if (!_default) {
-        const allClassNames = s3Classes.map(extractSymbolName).join(',');
-        const errMsg = `No default defined for function: [${o.name}] for s3 classes: ${allClassNames}`
-        printers3router(errMsg)
-        throw new Error(errMsg);
+        if (isR(obj)) {
+          const allClassNames = s3Classes.map(extractSymbolName).join(',');
+          const errMsg = `No default defined for function: [${o.name}] for s3 classes: ${allClassNames}`
+          s3logger.errorAndThrow(Error, errMsg)
+        }
+        return _default.apply(obj, argumentList.slice());
       }
-      return _default.apply(obj, argumentList.slice());
     }
   } // router end
   return new Proxy(fnStub, s3MethodRouter);

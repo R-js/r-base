@@ -3,7 +3,7 @@ import * as debug from 'debug';
 export function getLogger(name){
     const printer = debug(name);
     return {
-        waring: printer,
+        warning: printer,
         error: printer,
         trace: printer,
         debug: printer,
