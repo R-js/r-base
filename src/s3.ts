@@ -1,6 +1,6 @@
 'use strict';
 
-import { checks } from './checks';
+import { assertNonEmptyString, assertValidIdentifier, isDefined } from './checks';
 import * as debug from 'debug';
 import { asSymbol, extractSymbolName } from './helpers';
 import { isArray } from 'util';
@@ -20,7 +20,7 @@ export const $numeric = Symbol.for('numeric');
 export const $chr = Symbol.for('character');
 export const $fs = Symbol.for('file');
 export const $difftime = Symbol.for('difftime');
-export const $vect = Symbol.for('vector');
+export const $vector = Symbol.for('vector');
 export const $list = Symbol.for('list');
 export const $raw = Symbol.for('raw');
 export const $AsIs = Symbol.for('AsIs');
@@ -40,7 +40,7 @@ export const $Date = Symbol.for('Date');
 export const $dbl = Symbol.for('double')
 export const $lan = Symbol.for('language')
 export const $s3 = Symbol.for('s3System')
-export const $ch = Symbol.for('classHidden');
+/*export*/ const $ch = Symbol.for('classHidden');
 export const $attr = Symbol.for('attributes')
 export const $default = Symbol.for('S3-default')
 export const $class = Symbol.for('s3class');
@@ -54,10 +54,24 @@ export const hierarchy = {
   [$POSIXlt]: $POSIXt
 }
 
-export function isR(obj): boolean {
+/*functions:
+ isR
+ assertR
+ Renhance
+ UseMethod
+ getClass
+*/
+
+export function isR(obj) {
   // was the JS object R-enhanced?
   // its on the object but "has" returns false
   return obj && !(obj[$attr] == undefined) && !($attr in obj)
+}
+
+export function assertR(obj) {
+  if (!isR(obj)) {
+    throw new TypeError(`object is not an R object`)
+  }
 }
 
 export function Renhance(obj) {
@@ -71,7 +85,7 @@ export function Renhance(obj) {
     },
     set(o, propName: PropertyKey, propValue: Function | string, originalObj) {
       const key = asSymbol(propName);
-      if (checks.isDefined(propValue)) {
+      if (isDefined(propValue)) {
         if (isArray(propValue)) {
           dict.set(key, propValue);
         }
@@ -80,7 +94,7 @@ export function Renhance(obj) {
         }
         return true;
       }
-      logEnhance('will delete:'+String(propName))
+      logEnhance('will delete:' + String(propName))
       dict.delete(key);
       return true;
     },
@@ -149,8 +163,8 @@ export function Renhance(obj) {
 }
 
 export const UseMethod = (methodName: string) => {
-  checks.assertNonEmptyString(methodName)
-  checks.assertValidIdentifier(methodName);
+  assertNonEmptyString(methodName)
+  assertValidIdentifier(methodName);
   const fns = new Map()
 
   var fnStub = Function(`
@@ -161,15 +175,15 @@ export const UseMethod = (methodName: string) => {
   const s3MethodRouter = {
     //traps
     get(o, propName: PropertyKey) {
-      switch(propName){
+      switch (propName) {
         case 'toString':
-          return  o[propName].bind(o);
+          return o[propName].bind(o);
         case Symbol.toPrimitive:
           return o[propName];
         case 'valueOf':
           return o[propName] //o[propName];
         default:
-          break;      
+          break;
       }
       const symbol = asSymbol(propName);
       let fn = fns.get(symbol);
@@ -193,10 +207,10 @@ export const UseMethod = (methodName: string) => {
     },
     // actual routing is here
     apply(o, thisArg, argumentList) {
-       const obj = argumentList[0];
-       if (!isR(obj)){
-          throw new TypeError(`first argument is not an R object`)
-       }
+      const obj = argumentList[0];
+      if (!isR(obj)) {
+        throw new TypeError(`first argument is not an R object`)
+      }
       const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
       if (!s3Classes.length) {
         throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
@@ -207,18 +221,24 @@ export const UseMethod = (methodName: string) => {
           return method.apply(obj, argumentList.slice())
         }
       }
-      
+
       // try default
       const _default = fns.get($default);
-      if (!_default){
-          const allClassNames = s3Classes.map(extractSymbolName).join(',');
-          const errMsg = `No default defined for function: [${o.name}] for s3 classes: ${allClassNames}`
-          printers3router(errMsg)
-          throw new Error(errMsg);
+      if (!_default) {
+        const allClassNames = s3Classes.map(extractSymbolName).join(',');
+        const errMsg = `No default defined for function: [${o.name}] for s3 classes: ${allClassNames}`
+        printers3router(errMsg)
+        throw new Error(errMsg);
       }
-      _default.apply(obj, argumentList.slice());
-    }   
+      return _default.apply(obj, argumentList.slice());
+    }
   } // router end
   return new Proxy(fnStub, s3MethodRouter);
 }
 
+// gets hidden class
+export function getClass(obj) {
+  if (isR) {
+    return obj[$attr][$class] || obj[$attr][$ch]
+  }
+}
