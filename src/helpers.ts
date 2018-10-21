@@ -38,25 +38,27 @@ export function indexOf(value: PropertyKey, start: number, arr: PropertyKey[]): 
 function createPromotor() {
 
     let finalpromo = 'boolean';
+    
+    function find(v, i, arr) {
+        const _type = typeof v;
+        if (_type === 'string') {
+            finalpromo = 'string'
+            return true;
+        }
+        if (_type === 'number') {
+            finalpromo = 'number'
+        }
+        if (_type === 'boolean' && finalpromo !== 'number') {
+            finalpromo = 'boolean'
+        }
+        if (_type === 'function') {
+            return find(v(), i, arr)
+        }
+        return false;
+    }
 
     return {
-        find: function (v, i, arr) {
-            const _type = typeof v;
-            if (_type === 'string') {
-                finalpromo = 'string'
-                return true;
-            }
-            if (_type === 'number') {
-                finalpromo = 'number'
-            }
-            if (_type === 'boolean' && finalpromo !== 'number') {
-                finalpromo = 'boolean'
-            }
-            if (_type === 'function') {
-                return this.find(v(), i, arr)
-            }
-            return false;
-        },
+        find,
         code: () => finalpromo
     }
 }
@@ -81,7 +83,7 @@ export function promote(...n: FactorType[]) {
         if (typeof p === 'function'){
             let  fn = (p) => {
                const an = p()
-               if (typeof an == 'function') { 
+               if (typeof an === 'function') { 
                    return fn(an)
                }
                return an;  

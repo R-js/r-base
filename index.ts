@@ -26,6 +26,6 @@ const allattribs = Object.getOwnPropertySymbols(matrix[$attr])
 const name = ''+fn;
 console.log(r1, '\n', r2, '\n', r3, '\n', allattribs, '\n', name);
 
-const f1 = factor(true, false, true, false, false);
+const f1 = factor(true, false, ()=>'hoi', false, false,1);
 
 console.log(f1[2]);
