@@ -29,6 +29,7 @@ export const $int = Symbol.for('integer');
 export const $cmplx = Symbol.for('complex');
 export const $logic = Symbol.for('logical');
 export const $ts = Symbol.for('ts');
+export const $listProps = Symbol.for('ts');
 export const $noq = Symbol.for('noquote');
 export const $env = Symbol.for('environment');
 export const $form = Symbol.for('formula');
@@ -39,8 +40,8 @@ export const $glm = Symbol.for('glm');
 export const $Date = Symbol.for('Date');
 export const $dbl = Symbol.for('double')
 export const $lan = Symbol.for('language')
-export const $s3 = Symbol.for('s3System')
-/*export*/ const $ch = Symbol.for('classHidden');
+export const $s3 = Symbol.for('s3System');
+export const $ch = Symbol.for('classHidden');
 export const $attr = Symbol.for('attributes')
 export const $default = Symbol.for('S3-default')
 export const $class = Symbol.for('s3class');
@@ -208,20 +209,18 @@ export const UseMethod = (methodName: string) => {
     // actual routing is here
     apply(o, thisArg, argumentList) {
       const obj = argumentList[0];
-      if (!isR(obj)) {
-        throw new TypeError(`first argument is not an R object`)
-      }
-      const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
-      if (!s3Classes.length) {
-        throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
-      }
-      for (const s3Class of s3Classes) {
-        const method = fns.get(s3Class)
-        if (method) {
-          return method.apply(obj, argumentList.slice())
+      if (isR(obj)) {
+        const s3Classes = obj[$attr][$class].concat(obj[$attr][$ch]);
+        if (!s3Classes.length) {
+          throw new Error(`It is an R object but with no classes defined [${String(obj)}]`);
+        }
+        for (const s3Class of s3Classes) {
+          const method = fns.get(s3Class)
+          if (method) {
+            return method.apply(obj, argumentList.slice())
+          }
         }
       }
-
       // try default
       const _default = fns.get($default);
       if (!_default) {
