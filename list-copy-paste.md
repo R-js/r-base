@@ -40,6 +40,7 @@
 
 ### language
 ```R
+base::all.equal.formula
 base::getElement #Extract or Replace Parts of an Object
 base::is.single #Error in is.single(1e-06) : type "single" unimplemented in R
 base::is.null
@@ -1291,8 +1292,8 @@ base::Summary.factor
 base::droplevels.factor
 base::is.factor
 base::levels<-.factor
-base::Math.factor
-base::all.equal.formula
+base::Math.factor        #not meaningfull for factors, this is a "trap"
+
 base::cut.default
 base::is.na<-.factor
 base::ordered
