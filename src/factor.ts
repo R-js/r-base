@@ -6,8 +6,10 @@ export function factor(...args: FactorType[]) {
     // promotion rules
     const promoted = promote(...args);
     const levels = promoted.filter((v,i, arr)=>  v !== null && !arr.includes(v,i+1)).sort(); 
-    const obj = Renhance(promoted);
-    obj[$attr][$levels] = levels;
+    const obj = Renhance(promoted); //FIXME: add $attr as an optional choice here
+    // add the concept of "private attributes",
+    // add the concept of "default attributes?" // read only build/baked-in(s)
+    obj[$attr][$levels] = levels; //FIXME: "levels" is not a attribute label, seems to be "built in"
     obj[$attr][$class] = $fact;
     return obj;
 }
