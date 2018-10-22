@@ -115,7 +115,7 @@ base::as.null
 base::storage.mode
 base::is.nan
 base::class
-base::length<-.factor
+
 base::pretty.default
 base::open.srcfilealias
 base::identity
@@ -228,7 +228,7 @@ base::while
 base::complex
 base::environmentIsLocked
 base::Sys.getenv
-base::Ops.factor
+
 base::as.complex
 base::all.equal.environment
 base::as.double
@@ -844,7 +844,7 @@ base::LETTERS
 base::parse #'parse' returns the parsed but unevaluated expressions in a list._
 base::by #Function 'by' is an object-oriented wrapper for 'tapply' applied to data frames._
 base::gc #garbage collection_
-base::gl #Generate factors by specifying the pattern of their levels._
+
 base::match #same as %in%_
 ```
 
@@ -1137,7 +1137,7 @@ base::as.character.octmode
 base::browserSetDebug
 base::print.listof
 base::[.octmode
-base::print.factor
+
 base::default.stringsAsFactors
 base::pmatch
 base::casefold
@@ -1173,7 +1173,7 @@ base::gregexpr
 base::ngettext
 base::gettext
 base::rawToChar
-base::format.factor
+
 base::sQuote
 base::nchar
 base::strptime
@@ -1244,7 +1244,7 @@ base::rank #ranking of numbers_
 # rank(x)
 #-> [1] 1.0 2.5 2.5 4.0 5.0
 base::xtfrm.AsIs
-base::xtfrm.factor
+
 ```
 
 ### condition number of a matrix
@@ -1274,37 +1274,4 @@ base::withCallingHandlers
 base::as.logical.factor
 base::isTRUE
 base::is.logical
-```
-
-### factors 
-### levels
-```R
-base::Ops.ordered
-base::addNA
-base::[<-.factor
-base::[[<-.factor
-base::as.character.factor
-base::[.factor
-base::as.factor
-base::cut
-base::[[.factor
-base::Summary.factor
-base::droplevels.factor
-base::is.factor
-base::levels<-.factor
-base::Math.factor        #not meaningfull for factors, this is a "trap"
-
-base::cut.default
-base::is.na<-.factor
-base::ordered
-base::all.equal.factor
-base::levels
-base::is.ordered
-base::levels.default
-base::factor
-base::nlevels
-base::Summary.ordered
-base::as.ordered
-base::levels<-
-base::summary.factor
 ```

@@ -53,9 +53,6 @@
     "type": "git",
     "url": "git+https://github.com/jacobbogers/r-base.git"
   },
-  "scripts": {
-    "test": "npm run test",
-    "prepublishOnly": "tsc && npm run build:prod",
-  },
+  "scripts": {},
   "version": "1.0.0"
 }
