@@ -1,17 +1,24 @@
-import { promote } from './helpers';
+import { promote, flatten } from './helpers';
+import { seq_len, repInt, rep_len } from './public';
 import { FactorType } from './types';
-import { Renhance, $attr, $class, $fact, $levels   } from './s3';
+import { Renhance, $class, $fact, $levels , $buildIn, $ordered  } from './s3';
 
 export function factor(...args: FactorType[]) {
     // promotion rules
-    const promoted = promote(...args);
+    const flattened  = flatten(args);
+    const promoted = promote(...flattened);
     const levels = promoted.filter((v,i, arr)=>  v !== null && !arr.includes(v,i+1)).sort(); 
-    const obj = Renhance(promoted); //FIXME: add $attr as an optional choice here
-    // add the concept of "private attributes",
-    // add the concept of "default attributes?" // read only build/baked-in(s)
-    obj[$attr][$levels] = levels; //FIXME: "levels" is not a attribute label, seems to be "built in"
-    obj[$attr][$class] = $fact;
+    const obj = Renhance(promoted, $buildIn); 
+    obj[$buildIn][$levels] = levels;
+    obj[$buildIn][$class] = [$fact];
     return obj;
+}
+
+export function gl(n: number, k: number, length: number = n*k, labels = seq_len(n), ordered = false){
+    const data = rep_len(repInt(seq_len(n), repInt(k ,n)), length)
+    const fac = factor(data)
+    set
+    fac[$buildIn][$class] = [$ordered, $fact];
 }
 
 /*
