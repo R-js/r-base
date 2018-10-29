@@ -1,6 +1,6 @@
 'use strict';
 
-import { UseMethod, /* $default, */ $list, $df, $int, $string, $double, $logical, $jsArray } from "./s3";
+import { UseMethod, Rclass, /* $default, */ $ordered, $list, $df, $int, $string, $double, $logical, $jsArray, isR } from "./s3";
 import { multiplexer } from './helpers';
 
 function seq_len(length: number, offset = 1) {
@@ -8,7 +8,7 @@ function seq_len(length: number, offset = 1) {
 }
 
 const repInt = UseMethod('rep$int')
-const rep_len = UseMethod('rep_len');
+
 
 repInt[$list] = function () { throw new TypeError(`List is not implemented for ${this.name}`); }
 repInt[$df] = function () { throw new TypeError(`dataFrame is not implemented for ${this.name}`); }
@@ -16,7 +16,7 @@ repInt[$int] = repInt[$string] = repInt[$logical] = repInt[$double] = function (
     return Array.from({ length: times }).fill(x);
 }
 
-repInt[$jsArray] = Rcycle(repInt);/*  function(x: any[], times){
+repInt[$jsArray] = Rcycle(repInt[$int]);/*  function(x: any[], times){
    if (typeof times !== 'number' || times  <= 0) return [];
    const flattened = flatten(x);
    const length = flattened.length * times; 
@@ -28,10 +28,37 @@ repInt[$jsArray] = Rcycle(repInt);/*  function(x: any[], times){
    }
 }*/
 
+const rep_len = UseMethod('rep_len');
+rep_len[$int] = rep_len[$string] = repInt[$logical] = repInt[$double] = function (x, times) {
+    return Array.from({ length: times }).fill(x);
+}
+rep_len[$jsArray] = function (x: any, length: number) {
+    let rc = x.slice()
+    if (length === rc.length) {
+        return rc;
+    }
+    if (length < rc.length) {
+        rc.length = length
+        return rc;
+    }
+    rc = Array.from({ length });
+    for (let i = 0; i < rc.length; i++) {
+        rc[i] = x[i % length]
+    }
+    return rc;
+}
+
+
 function Rcycle(fn: (...rest: (any | any[])[]) => any) {
     return function (...rest: (any | any[])[]) {
         return multiplexer(...rest)(fn);
     };
 }
 
-export { repInt, rep_len, seq_len, Rcycle }
+function isOrdered(x: any) {
+    const classNames: symbol[] = Rclass(x);
+    return classNames.includes($ordered)
+}
+
+
+export { repInt, rep_len, seq_len, Rcycle, isOrdered }

@@ -3,7 +3,7 @@
 import { assertNonEmptyString, assertValidIdentifier, isDefined } from './checks';
 import { getLogger } from './logger';
 import { asSymbol, extractSymbolName, isType, exclude, lowerCaseIfString, unique } from './helpers';
-import { truncate } from 'fs';
+
 
 const { isArray } = Array;
 const { abs, trunc } = Math;
@@ -12,13 +12,17 @@ const s3logger = getLogger('s3router');
 const elogger = getLogger('Renhance');
 
 // instrumentation
-export const $buildIn = Symbol.for('buildins')
-export const $hiddenAttr = Symbol.for('hiddenAttributes')
-export const $s3 = Symbol.for('s3System');
-export const $ch = Symbol.for('classHidden');
-export const $attr = Symbol.for('attributes')
-export const $default = Symbol.for('S3-default')
-export const $class = Symbol.for('s3class');
+
+const $buildIn = Symbol.for('buildins');
+const $hiddenAttr = Symbol.for('hiddenAttributes');
+const $s3 = Symbol.for('s3System');
+const $attr = Symbol.for('attributes');
+const $default = Symbol.for('S3-default');
+const $class = Symbol.for('s3class');
+
+
+export{ $buildIn, $hiddenAttr, $s3, $attr, $default, $class }; 
+
 
 //classes
 export const $matrix = Symbol.for('matrix');
@@ -40,6 +44,8 @@ export const $fact = Symbol.for('factor');
 export const $cmplx = Symbol.for('complex');
 export const $lan = Symbol.for('language');
 export const $levels = Symbol.for('levels');
+export const $ordered = Symbol.for('ordered');
+export const $NA = Symbol.for('NA');
 
 
 export const $ts = Symbol.for('ts');
@@ -215,7 +221,7 @@ export function getExtendedType(arg: any) {
     case 'boolean':
       return $logical;
     case 'undefined':
-      return $undefined;            
+      return $undefined;
     default:
       if (arg instanceof Array) return $jsArray;
       if (arg instanceof Date) return $jsDate;
@@ -236,10 +242,10 @@ export const UseMethod = (methodName: string) => {
     //hidden
     _processNonRArguments(o, argumentList) {
       const first = argumentList[0];
-      const lookupKey =  getExtendedType(first);
-      const fn = fns.get(lookupKey) || fns.get($default) 
-      if (!fn){
-        s3logger.errorAndThrow(Error,`No handler for: ${extractSymbolName(lookupKey || $default)} `)
+      const lookupKey = getExtendedType(first);
+      const fn = fns.get(lookupKey) || fns.get($default)
+      if (!fn) {
+        s3logger.errorAndThrow(Error, `No handler for: ${extractSymbolName(lookupKey || $default)} `)
       }
       return fn.apply(o, argumentList.slice());
     },

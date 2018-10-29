@@ -130,7 +130,7 @@ export function promoteArray(n: FactorType[]) {
         }
         rc[i] = op(p);
     }
-    return rc;
+    return { promoted: rc, type: promotor.code() };
 }
 
 export function flatten<T>(...rest: (T | T[])[]): T[] {
@@ -185,6 +185,8 @@ export function multiplexer(...rest: (system | system)[]) {
             }
             rc.push(fn(...result));
         }
-        return rc;
+        return flatten(rc);
     };
 }
+
+

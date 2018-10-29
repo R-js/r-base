@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-export function getLogger(name){
+export function getLogger(name: string){
     const printer = debug(name);
     return {
         warning: printer,
