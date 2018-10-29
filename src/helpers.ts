@@ -97,7 +97,7 @@ export function duplicates(input: any[]): any[] {
 }
 
 export function unique(input: any[]): any[] {
-    return input.filter((f, i, arr) => indexOf(f, i + 1, arr) !== -1);
+    return input.filter((f, i, arr) => indexOf(f, i + 1, arr) === -1);
 }
 
 export function promote(...args: FactorType[]) {

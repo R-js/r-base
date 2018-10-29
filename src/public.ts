@@ -1,6 +1,6 @@
 'use strict';
 
-import { UseMethod, Rclass, /* $default, */ $ordered, $list, $df, $int, $string, $double, $logical, $jsArray, isR } from "./s3";
+import { UseMethod, Rclass, /* $default, */ $ordered, $list, $df, $int, $string, $double, $logical, $jsArray } from "./s3";
 import { multiplexer } from './helpers';
 
 function seq_len(length: number, offset = 1) {
@@ -43,7 +43,7 @@ rep_len[$jsArray] = function (x: any, length: number) {
     }
     rc = Array.from({ length });
     for (let i = 0; i < rc.length; i++) {
-        rc[i] = x[i % length]
+        rc[i] = x[i % x.length]
     }
     return rc;
 }
