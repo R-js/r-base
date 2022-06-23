@@ -14,7 +14,7 @@
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "clone": "^2.1.2",
-    "codecov": "^3.1.0",
+    "codecov": "^3.8.3",
     "cross-env": "^5.2.0",
     "debug": "^4.1.0",
     "istanbul": "^0.4.5",
